@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  width: 100vw;
+  background-color: rgb(243, 243, 243);
+}
+
+:root {
+  --main-color: #ff5314;
+  --sec-color: #e7e7e7;
+  --black-color: #181818;
+  --font-size: 16px;
+  --main-font-color: #181818;
+  font-family: NeueMontrealRegular;
+}
+
+@font-face {
+  font-family: NeueMontreal;
+  src: url("../font/NeueMontreal-Light.woff") format("woff");
+}
+
+@font-face {
+  font-family: NeueMontrealRegular;
+  src: url("../font/NeueMontreal-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: NeueMontrealMedium;
+  src: url("../font/NeueMontreal-Medium.woff") format("woff");
+}
+
+@font-face {
+  font-family: NeueMontrealBold;
+  src: url("../font/NeueMontreal-Bold.woff") format("woff");
+}
+
+.base-container {
+  width: 100% !important;
+  max-width: 1600px;
+  display: flex;
+  margin: auto;
+  padding: 0 40px;
+}
+
+.main-color {
+  background-color: var(--main-color);
+}
+
+.sec-color {
+  background-color: var(--sec-color);
+}
+
+.main-font-color {
+  color: var(--main-font-color);
+}
+
+.black-color {
+  color: var(--black-color);
+}
+
+.main-font {
+  font-family: NeueMontrealRegular;
+  font-size: 16px;
+  font-weight: 600;
+  font-style: normal;
+}
