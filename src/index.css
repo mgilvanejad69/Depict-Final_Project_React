@@ -7,7 +7,7 @@
 }
 
 body {
-  width: 100vw;
+  width: 100%;
   background-color: rgb(243, 243, 243);
 }
 
@@ -22,22 +22,22 @@ body {
 
 @font-face {
   font-family: NeueMontreal;
-  src: url("../font/NeueMontreal-Light.woff") format("woff");
+  src: url("/public/font/NeueMontreal-Light.woff2") format("woff");
 }
 
 @font-face {
   font-family: NeueMontrealRegular;
-  src: url("../font/NeueMontreal-Regular.woff") format("woff");
+  src: url("/public/font/NeueMontreal-Regular.woff2") format("woff");
 }
 
 @font-face {
   font-family: NeueMontrealMedium;
-  src: url("../font/NeueMontreal-Medium.woff") format("woff");
+  src: url("/public/font/NeueMontreal-Medium.woff2") format("woff");
 }
 
 @font-face {
   font-family: NeueMontrealBold;
-  src: url("../font/NeueMontreal-Bold.woff") format("woff");
+  src: url("/public/font/NeueMontreal-Bold.woff2") format("woff");
 }
 
 .base-container {
@@ -70,3 +70,5 @@ body {
   font-weight: 600;
   font-style: normal;
 }
+
+

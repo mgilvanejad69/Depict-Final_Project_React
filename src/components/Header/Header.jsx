@@ -15,7 +15,7 @@ const Header = ({ children }) => {
                 Journal
               </button>
               <Link to="/Products">
-                <button className="flex justify-center items-center main-font-color main-font font-[NeueMontreal] cursor-pointer !px-4 !py-[12px] !mx-2 rounded-[8px]  hover:bg-[#E7E7E7] transition-all">
+                <button className="flex justify-center items-center main-font-color main-font font-[NeueMontreal] cursor-pointer !px-4 !py-[12px] !mx-2 rounded-[8px]  hover:bg-[#110f0f] transition-all">
                   Products
                 </button>
               </Link>
