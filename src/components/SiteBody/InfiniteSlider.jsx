@@ -31,7 +31,7 @@ const InfinitSlider = () => {
     <>
       <div className="slider w-[60%] h-[660px] bg-white rounded-[50px] p-6 flex items-center justify-center gap-5 relative cursor-grab overflow-hidden">
         <div
-          className="slider-track h-[550px] flex "
+          className="slider-track h-[550px] flex"
           ref={sliderTrackRef}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
