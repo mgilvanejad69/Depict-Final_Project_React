@@ -1,4 +1,5 @@
 import Brands from "./Brands";
+import Cards from "./Cards";
 import InfinitSlider from "./InfiniteSlider";
 import SiteTitle from "./SiteTitle";
 
@@ -10,6 +11,7 @@ const Home = () => {
         <InfinitSlider />
       </div>
       <Brands />
+      <Cards />
     </div>
   );
 };
