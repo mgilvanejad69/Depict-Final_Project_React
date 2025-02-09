@@ -12,6 +12,7 @@ const Home = () => {
       </div>
       <Brands />
       <Cards />
+      <div className="w-full h-[1800px]"></div>
     </div>
   );
 };
