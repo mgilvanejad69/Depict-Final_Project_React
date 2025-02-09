@@ -22,6 +22,17 @@ const InfinitSlider = () => {
         x: gsap.utils.unitize((x) => parseFloat(x) % (totalWidth / 2)),
       },
     });
+
+    gsap.from(sliderTrack, {
+      y: 100,
+      opacity: 0,
+      ease: "none",
+      duration: 0.4,
+      delay: "0.75",
+      stagger: {
+        each: 0.1,
+      },
+    });
   }, []);
 
   const handleMouseEnter = () => animationRef.current.pause();

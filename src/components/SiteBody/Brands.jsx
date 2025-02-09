@@ -5,10 +5,12 @@ import { useEffect } from "react";
 
 const Brands = () => {
   const brandsRef = useRef(null);
+  const brandsContainerRef = useRef();
 
   useEffect(() => {
     const brands = brandsRef.current;
     const brandsItems = Array.from(brands.children);
+    const brandsContainer = brandsContainerRef.current;
 
     let totalWidth = BRANDS.length * 160;
     brandsItems.map((elem) => (totalWidth += elem.offsetWidth));
@@ -22,11 +24,23 @@ const Brands = () => {
         x: gsap.utils.unitize((x) => parseFloat(x) % (totalWidth / 2)),
       },
     });
+
+    gsap.from(brandsContainer, {
+      y: 50,
+      opacity: 0,
+      ease: "power1.out",
+      duration: 0.2,
+      delay: "1.25",
+      stagger: {
+        each: 0.1,
+      },
+    });
   }, []);
   return (
     <div
       className=" !px-8 !py-10 !mt-4 bg-[#181818] rounded-[40px] flex flex-col items-center overflow-hidden"
       onLoad={lazy}
+      ref={brandsContainerRef}
     >
       <div className="text-[#FBFBFB] text-[18px] !pb-[3px] font-bold">
         Loved By Fashion Brands

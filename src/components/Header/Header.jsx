@@ -1,10 +1,33 @@
+import { gsap } from "gsap";
 import { Link } from "react-router-dom";
 import LogoPic from "./Logo";
+import { useEffect, useRef } from "react";
+import ScrollTrigger from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 const Header = ({ children }) => {
+  const myNavRef = useRef();
+
+  useEffect(() => {
+    const myNav = myNavRef.current;
+
+    gsap.from(myNav, {
+      y: -150,
+      opacity: 0,
+      ease: "none",
+      duration: 0.2,
+      delay: "1",
+      stagger: {
+        each: 0.1,
+      },
+    });
+  }, []);
   return (
     <>
-      <nav className="base-container h-[144px] !pt-8 !pb-4">
+      <nav
+        className="base-container h-[144px] !pt-8 !pb-4 sticky top-0 z-50"
+        ref={myNavRef}
+      >
         <div className="w-full h-full !pl-8 bg-white flex justify-between items-center rounded-[30px] ">
           <div className=" h-full flex justify-center items-center">
             <LogoPic />

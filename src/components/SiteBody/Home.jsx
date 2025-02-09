@@ -1,6 +1,7 @@
 import Brands from "./Brands";
 import Cards from "./Cards";
 import InfinitSlider from "./InfiniteSlider";
+import OrangeBanner from "./OrangeBanner";
 import SiteTitle from "./SiteTitle";
 
 const Home = () => {
@@ -12,9 +13,7 @@ const Home = () => {
       </div>
       <Brands />
       <Cards />
-      <div className="w-full h-[100vh]">
-        <div className="w-full h-full bg-[#f04e4e] rounded-[50px]"></div>
-      </div>
+      <OrangeBanner />
     </div>
   );
 };

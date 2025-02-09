@@ -71,4 +71,6 @@ body {
   font-style: normal;
 }
 
-
+.card-item:hover > img {
+  transform: rotateX("-45degree") !important;
+}
