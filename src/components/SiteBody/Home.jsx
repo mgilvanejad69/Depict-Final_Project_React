@@ -12,7 +12,9 @@ const Home = () => {
       </div>
       <Brands />
       <Cards />
-      <div className="w-full h-[1800px]"></div>
+      <div className="w-full h-[100vh]">
+        <div className="w-full h-full bg-[#f04e4e] rounded-[50px]"></div>
+      </div>
     </div>
   );
 };

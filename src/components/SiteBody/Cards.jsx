@@ -12,6 +12,7 @@ const Cards = () => {
   useEffect(() => {
     const cardsBox = cardsBoxRef.current;
     const textTopOfCards = textTopOfCardsRef.current;
+    const cardsContainer = cardsRef.current;
     const cards = Array.from(cardsRef.current.children);
 
     console.log(cards);
@@ -25,9 +26,10 @@ const Cards = () => {
       scrollTrigger: {
         trigger: cardsBox,
         start: "top top",
-        end: "+=700px",
-        scrub: true,
+        end: "bottom bottom",
+        scrub: 1,
         pin: true,
+        markers: true,
       },
     });
 
@@ -38,13 +40,14 @@ const Cards = () => {
         start: "top top",
         end: "bottom top",
         scrub: true,
+        refreshPriority: 1,
       },
     });
   }, []);
 
   return (
     <div
-      className="w-full flex flex-col justify-start items-center relative"
+      className="w-full h-[190vh] flex flex-col justify-start items-center relative"
       ref={cardsBoxRef}
     >
       <div className="w-[640px] h-[40vh] flex justify-center items-end">
