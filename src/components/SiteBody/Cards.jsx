@@ -26,9 +26,10 @@ const Cards = () => {
       scrollTrigger: {
         trigger: cardsBox,
         start: "top top",
-        end: "bottom bottom",
-        scrub: 1,
+        end: "bottom center",
+        scrub: 1.5,
         pin: true,
+        pinSpacing: true,
       },
     });
 
@@ -38,14 +39,14 @@ const Cards = () => {
         trigger: textTopOfCards,
         start: "top top",
         end: "bottom top",
-        scrub: true,
+        scrub: 1,
         refreshPriority: 1,
       },
     });
   }, []);
   return (
     <div
-      className="w-full h-[190vh] flex flex-col justify-start items-center relative"
+      className="w-full min-h-screen flex flex-col justify-start items-center relative"
       ref={cardsBoxRef}
     >
       <div className="w-[640px] h-[40vh] flex justify-center items-end">
@@ -59,9 +60,7 @@ const Cards = () => {
       </div>
       <div className="w-full h-[100vh] absolute top-0 flex justify-center items-center">
         <div className=" h-[480px] flex items-center gap-4" ref={cardsRef}>
-          <div
-            className="card-item w-[400px] h-[480px] bg-[#212121] rounded-[50px] !p-8 -rotate-10 translate-y-[375px] translate-x-[130px] scale-110 flex flex-col justify-center items-center"
-          >
+          <div className="card-item w-[400px] h-[480px] bg-[#212121] rounded-[50px] !p-8 -rotate-10 translate-y-[375px] translate-x-[130px] scale-110 flex flex-col justify-center items-center">
             <img
               src="https://cdn.prod.website-files.com/6630ceeee6fd1a867237f62e/664f9343d82e36635307f2f4_hand-pointer-regular%201.svg"
               alt=""
@@ -78,9 +77,7 @@ const Cards = () => {
               </p>
             </div>
           </div>
-          <div
-            className="card-item w-[400px] h-[480px] bg-[#2B2B2B] rounded-[50px] !p-8 translate-y-[320px] scale-110 flex flex-col justify-center items-center"
-          >
+          <div className="card-item w-[400px] h-[480px] bg-[#2B2B2B] rounded-[50px] !p-8 translate-y-[320px] scale-110 flex flex-col justify-center items-center">
             <img
               src="https://cdn.prod.website-files.com/6630ceeee6fd1a867237f62e/664f93fc12ae325e821e35c1_store-solid%201.svg"
               alt=""
@@ -96,9 +93,7 @@ const Cards = () => {
               </p>
             </div>
           </div>
-          <div
-            className="card-item w-[400px] h-[480px] bg-[#363636]  rounded-[50px] !p-8 rotate-10 translate-y-[375px] -translate-x-[130px] scale-110 flex flex-col justify-center items-center"
-          >
+          <div className="card-item w-[400px] h-[480px] bg-[#363636]  rounded-[50px] !p-8 rotate-10 translate-y-[375px] -translate-x-[130px] scale-110 flex flex-col justify-center items-center">
             <img
               src="https://cdn.prod.website-files.com/6630ceeee6fd1a867237f62e/664c52250567c9e0034b7510_Group%2092.svg"
               alt=""

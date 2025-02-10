@@ -24,7 +24,7 @@ const OrangeBanner = () => {
     });
   }, []);
   return (
-    <div className="w-full">
+    <div className="w-full !mt-[50px]">
       <div
         className="w-full h-[83vh] bg-[#FF5314] rounded-[50px] flex flex-col justify-center items-center"
         ref={orangeBannerRef}

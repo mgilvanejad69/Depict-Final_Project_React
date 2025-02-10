@@ -26,9 +26,9 @@ const Brands = () => {
     });
 
     gsap.from(brandsContainer, {
-      y: 50,
-      opacity: 0,
-      ease: "power1.out",
+      y: 150,
+      opacity: 1,
+      ease: "none",
       duration: 0.2,
       delay: "1.25",
       stagger: {
