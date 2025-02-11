@@ -70,6 +70,9 @@ body {
   font-weight: 600;
   font-style: normal;
 }
+.card-item {
+  will-change: transform, opacity;
+}
 
 .card-item:hover > img {
   transform: rotateX("-45degree") !important;
