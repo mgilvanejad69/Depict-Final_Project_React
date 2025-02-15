@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import LogoPic from "./Logo";
 import { useEffect, useRef } from "react";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import CardSvg from "./CardSvg";
 gsap.registerPlugin(ScrollTrigger);
 
 const Header = ({ children }) => {
@@ -28,7 +29,7 @@ const Header = ({ children }) => {
         className="base-container h-[144px] !pt-8 !pb-4 sticky top-0 z-50"
         ref={myNavRef}
       >
-        <div className="w-full h-full !pl-8 bg-white flex justify-between items-center rounded-[30px] ">
+        <div className="w-full h-full !pl-8 bg-white flex justify-between items-center rounded-[30px]">
           <div className=" h-full flex justify-center items-center">
             <LogoPic />
           </div>
@@ -48,9 +49,15 @@ const Header = ({ children }) => {
               <button className="flex justify-center items-center main-font-color main-font font-[NeueMontreal] cursor-pointer !px-4 !py-[12px] !ml-2 !mr-8 rounded-[8px] hover:bg-[#E7E7E7] transition-all">
                 About us
               </button>
-              <button className="w-[140px] h-full main-color flex justify-center items-center main-font-color main-font cursor-pointer rounded-[24px]">
-                SIgn In
-              </button>
+              <div className="w-[140px] h-full main-color flex justify-center items-center rounded-[24px]">
+                <button className="main-font-color main-font cursor-pointer">
+                  SIgn In
+                </button>
+                <div className="w-[1px] h-[24px] bg-[#181818] !mx-2"></div>
+                <button className="cursor-pointer">
+                  <CardSvg />
+                </button>
+              </div>
             </div>
           </div>
         </div>

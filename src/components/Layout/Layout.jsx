@@ -1,10 +1,10 @@
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 
-const Layout = ({ children }) => {
+const Layout = ({ children ,addToCard}) => {
   return (
     <>
-      <Header />
+      <Header addToCard={addToCard}/>
       {children}
       <Footer />
     </>
