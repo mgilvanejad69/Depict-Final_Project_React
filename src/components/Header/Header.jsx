@@ -1,13 +1,15 @@
 import { gsap } from "gsap";
 import { Link } from "react-router-dom";
 import LogoPic from "./Logo";
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import CardSvg from "./CardSvg";
+import { AddToCardContext } from "../../Context/AddToCardContext";
 gsap.registerPlugin(ScrollTrigger);
 
 const Header = ({ children }) => {
   const myNavRef = useRef();
+  const { cardList } = useContext(AddToCardContext);
 
   useEffect(() => {
     const myNav = myNavRef.current;
@@ -23,6 +25,8 @@ const Header = ({ children }) => {
       },
     });
   }, []);
+
+
   return (
     <>
       <nav
@@ -49,7 +53,7 @@ const Header = ({ children }) => {
               <button className="flex justify-center items-center main-font-color main-font font-[NeueMontreal] cursor-pointer !px-4 !py-[12px] !ml-2 !mr-8 rounded-[8px] hover:bg-[#E7E7E7] transition-all">
                 About us
               </button>
-              <div className="w-[140px] h-full main-color flex justify-center items-center rounded-[24px]">
+              <div className="w-[140px] h-full main-color flex justify-center items-center rounded-[24px] relative">
                 <button className="main-font-color main-font cursor-pointer">
                   SIgn In
                 </button>
@@ -57,6 +61,26 @@ const Header = ({ children }) => {
                 <button className="cursor-pointer">
                   <CardSvg />
                 </button>
+                <div className="w-[400px] absolute top-[50px] flex flex-col justify-start items-start gap-1">
+                  {cardList.map((elem) => (
+                    <div
+                      key={elem.id}
+                      className="w-full !px-2 flex items-center justify-start gap-2 border border-[#181818] rounded-2xl"
+                    >
+                      <div>
+                        <img src={elem.images[0]} alt="" className="w-[75px]" />
+                      </div>
+                      <div className="flex felx-col items-start justify-start gap-4">
+                        <p className="text-[14px] text-[#181818] text-center ">
+                          {elem.title}
+                        </p>
+                        <p className="text-[14px] text-[#181818] text-center ">
+                          {elem.price}$
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
