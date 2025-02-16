@@ -7,7 +7,7 @@ const Products = () => {
 
   useEffect(() => {
     if (productData.length === 0) {
-      fetch("https://api.escuelajs.co/api/v1/products?offset=1&limit=48")
+      fetch("https://api.escuelajs.co/api/v1/products")
         .then((res) => res.json())
         .then((newData) => setProductData(newData))
         .catch((error) => console.log(error));
@@ -17,6 +17,30 @@ const Products = () => {
   const handleAddToCard = (item) => {
     setAddToCard((prev) => prev + 1);
     setCardList([...cardList, item]);
+  };
+
+  const fixedImages = (images) => {
+    if (images.startsWith("[") && images.endsWith("]")) {
+      return images.slice(2, images.length - 2);
+    }
+    if (images.startsWith("[") && images.endsWith('"')) {
+      return images.slice(2, images.length - 1);
+    }
+    if (!images.startsWith("[")) {
+      return images;
+    }
+  };
+
+  const productsQuantity = (arr, item) => {
+    let newArr = arr.filter((elem) => elem.id == item.id);
+    return newArr.length;
+  };
+
+  const handleRemoveFromCard = (item) => {
+    let newCardList = [...cardList];
+    let itemIndex = newCardList.findIndex((elem) => elem.id == item.id);
+    newCardList.splice(itemIndex, 1);
+    setCardList(newCardList);
   };
 
   console.log(cardList);
@@ -30,9 +54,9 @@ const Products = () => {
               className="group w-[30%] max-w-[350px] h-[450px]  rounded-[50px] !p-2 flex flex-col justify-center items-center overflow-hidden relative"
               key={elem.id}
             >
-              <button className="w-full h-full decoration-0 flex justify-center cursor-pointer">
+              <div className="w-full h-full decoration-0 flex justify-center cursor-pointer">
                 <img
-                  src={elem.images[0]}
+                  src={fixedImages(elem.images[0])}
                   alt=""
                   loading="lazy"
                   className="w-full h-full object-cover bg-gray-600 rounded-[50px]"
@@ -48,13 +72,33 @@ const Products = () => {
                     <p className="font-bold w-[35px] text-end">{elem.price}$</p>
                   </div>
                 </div>
-                <a
-                  className="!pl-4 w-[112px] h-[36px] text-[#181818] text-[14px] !pb-1  absolute bottom-[104px] right-[-112px] opacity-60 main-color flex justify-between items-center rounded-l-[50px] cursor-pointer z-40 hover:text-[#FFFFFF] group-hover:right-0 transition-all hover:opacity-100"
-                  onClick={() => handleAddToCard(elem)}
-                >
-                  Add to Card
-                </a>
-              </button>
+                {productsQuantity(cardList, elem) > 0 ? (
+                  <div className="!px-4 w-[112px] h-[36px] text-[#181818] text-[14px] !pb-1  absolute bottom-[104px] right-[-112px] opacity-80 main-color flex justify-between items-center rounded-l-[50px] cursor-pointer z-40 hover:text-[#FFFFFF] group-hover:right-0 transition-all hover:opacity-100">
+                    <button
+                      className="!px-2 text-[30px] text-center cursor-pointer hover:text-[#181818]"
+                      onClick={() => handleRemoveFromCard(elem)}
+                    >
+                      -
+                    </button>
+                    <p className="!px-2 text-[16px] text-center">
+                      {productsQuantity(cardList, elem)}
+                    </p>
+                    <button
+                      className="!px-2 text-[24px] text-center cursor-pointer hover:text-[#181818]"
+                      onClick={() => handleAddToCard(elem)}
+                    >
+                      +
+                    </button>
+                  </div>
+                ) : (
+                  <a
+                    className="!pl-4 w-[112px] h-[36px] text-[#181818] text-[14px] !pb-1  absolute bottom-[104px] right-[-112px] opacity-80 main-color flex justify-between items-center rounded-l-[50px] cursor-pointer z-40 hover:text-[#FFFFFF] group-hover:right-0 transition-all hover:opacity-100"
+                    onClick={() => handleAddToCard(elem)}
+                  >
+                    Add to Card
+                  </a>
+                )}
+              </div>
             </div>
           ))}
         </div>

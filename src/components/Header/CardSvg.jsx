@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { AddToCardContext } from "../../Context/AddToCardContext.js";
 
 const CardSvg = () => {
-  const { addToCard } = useContext(AddToCardContext);
+  const { cardList } = useContext(AddToCardContext);
   return (
     <div className="relative">
       <svg
@@ -21,9 +21,13 @@ const CardSvg = () => {
           clipRule="evenodd"
         ></path>
       </svg>
-      <p className="absolute top-[-4px] right-[-4px] w-[18px] h-[18px] bg-[#181818] rounded-[50%] text-[#FFFFFF] text-[12px]">
-        {addToCard}
-      </p>
+      {cardList.length > 0 ? (
+        <p className="absolute top-[-4px] right-[-4px] w-[18px] h-[18px] bg-[#181818] rounded-[50%] text-[#FFFFFF] text-[12px]">
+          {cardList.length}
+        </p>
+      ) : (
+        ""
+      )}
     </div>
   );
 };
