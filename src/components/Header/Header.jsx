@@ -26,6 +26,10 @@ const Header = ({ children }) => {
     });
   }, []);
 
+  const uniqueArray = (arr) => {
+    let map = new Map();
+    return arr.filter((item) => !map.has(item.id) && map.set(item.id, true));
+  };
 
   return (
     <>
@@ -61,20 +65,23 @@ const Header = ({ children }) => {
                 <button className="cursor-pointer">
                   <CardSvg />
                 </button>
-                <div className="w-[400px] absolute top-[50px] flex flex-col justify-start items-start gap-1">
-                  {cardList.map((elem) => (
+                <div className="w-[400px] min-h-[300px] absolute top-[100px] right-0 flex flex-col justify-start items-start gap-1 bg-[#FFFFFF] !p-4 rounded-2xl">
+                  {uniqueArray(cardList).map((elem) => (
                     <div
                       key={elem.id}
-                      className="w-full !px-2 flex items-center justify-start gap-2 border border-[#181818] rounded-2xl"
+                      className="w-full !px-2 flex items-center justify-start gap-3 border border-[#181818] rounded-2xl cursor-pointer"
                     >
-                      <div>
+                      <div className="relative">
                         <img src={elem.images[0]} alt="" className="w-[75px]" />
+                        <div className="absolute right-0.5 bottom-0.5 w-[18px] h-[18px] flex items-center justify-center bg-[#ff5314] rounded-[4px] text-white text-[12px]">
+                          2
+                        </div>
                       </div>
-                      <div className="flex felx-col items-start justify-start gap-4">
+                      <div className="flex grow items-center justify-between !px-2 gap-4">
                         <p className="text-[14px] text-[#181818] text-center ">
                           {elem.title}
                         </p>
-                        <p className="text-[14px] text-[#181818] text-center ">
+                        <p className="text-[14px] text-[#181818] text-center font-bold">
                           {elem.price}$
                         </p>
                       </div>

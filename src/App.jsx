@@ -14,7 +14,14 @@ function App() {
     <>
       <BrowserRouter>
         <AddToCardContext.Provider
-          value={{ addToCard, setAddToCard, cardList, setCardList }}
+          value={{
+            addToCard,
+            setAddToCard,
+            cardList,
+            setCardList,
+            pQuantity,
+            setPQuantity,
+          }}
         >
           <Layout addToCard={addToCard}>
             <Routes>

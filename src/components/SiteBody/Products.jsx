@@ -3,13 +3,14 @@ import { AddToCardContext } from "../../Context/AddToCardContext.js";
 
 const Products = () => {
   const [productData, setProductData] = useState([]);
-  const { setAddToCard, cardList, setCardList } = useContext(AddToCardContext);
+  const { setAddToCard, cardList, setCardList } =
+    useContext(AddToCardContext);
 
   useEffect(() => {
     if (productData.length === 0) {
-      fetch("https://api.escuelajs.co/api/v1/products")
+      fetch("https://dummyjson.com/products")
         .then((res) => res.json())
-        .then((newData) => setProductData(newData))
+        .then((newData) => setProductData(newData.products))
         .catch((error) => console.log(error));
     }
   }, []);
@@ -19,17 +20,17 @@ const Products = () => {
     setCardList([...cardList, item]);
   };
 
-  const fixedImages = (images) => {
-    if (images.startsWith("[") && images.endsWith("]")) {
-      return images.slice(2, images.length - 2);
-    }
-    if (images.startsWith("[") && images.endsWith('"')) {
-      return images.slice(2, images.length - 1);
-    }
-    if (!images.startsWith("[")) {
-      return images;
-    }
-  };
+  // const fixedImages = (images) => {
+  //   if (images.startsWith("[") && images.endsWith("]")) {
+  //     return images.slice(2, images.length - 2);
+  //   }
+  //   if (images.startsWith("[") && images.endsWith('"')) {
+  //     return images.slice(2, images.length - 1);
+  //   }
+  //   if (!images.startsWith("[")) {
+  //     return images;
+  //   }
+  // };
 
   const productsQuantity = (arr, item) => {
     let newArr = arr.filter((elem) => elem.id == item.id);
@@ -43,8 +44,6 @@ const Products = () => {
     setCardList(newCardList);
   };
 
-  console.log(cardList);
-
   return (
     <div className="base-container !mt-[24px]">
       <div className="w-full flex gap-6">
@@ -56,10 +55,10 @@ const Products = () => {
             >
               <div className="w-full h-full decoration-0 flex justify-center cursor-pointer">
                 <img
-                  src={fixedImages(elem.images[0])}
+                  src={elem.images[0]}
                   alt=""
                   loading="lazy"
-                  className="w-full h-full object-cover bg-gray-600 rounded-[50px]"
+                  className="w-full h-full object-contain bg-gray-600 rounded-[50px]"
                 />
                 <div className="!px-3 w-[80%] h-[40px]  absolute bottom-[54px] flex justify-between items-center bg-[#FFFFFF] opacity-80 rounded-[50px]">
                   <div className="w-[80%] relative">
