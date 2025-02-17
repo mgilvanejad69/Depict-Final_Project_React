@@ -1,7 +1,7 @@
 import { gsap } from "gsap";
 import { Link } from "react-router-dom";
 import LogoPic from "./Logo";
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import CardSvg from "./CardSvg";
 import { AddToCardContext } from "../../Context/AddToCardContext";
@@ -10,6 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 const Header = ({ children }) => {
   const myNavRef = useRef();
   const { cardList } = useContext(AddToCardContext);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     const myNav = myNavRef.current;
@@ -30,6 +31,16 @@ const Header = ({ children }) => {
     let map = new Map();
     return arr.filter((item) => !map.has(item.id) && map.set(item.id, true));
   };
+
+  const productsQuantity = (arr, item) => {
+    let newArr = arr.filter((elem) => elem.id == item.id);
+    return newArr.length;
+  };
+
+  const totalPayment = (arr) => {
+    return arr.reduce((total, item) => total + item.price, 0);
+  };
+
 
   return (
     <>
@@ -62,31 +73,59 @@ const Header = ({ children }) => {
                   SIgn In
                 </button>
                 <div className="w-[1px] h-[24px] bg-[#181818] !mx-2"></div>
-                <button className="cursor-pointer">
-                  <CardSvg />
-                </button>
-                <div className="w-[400px] min-h-[300px] absolute top-[100px] right-0 flex flex-col justify-start items-start gap-1 bg-[#FFFFFF] !p-4 rounded-2xl">
-                  {uniqueArray(cardList).map((elem) => (
-                    <div
-                      key={elem.id}
-                      className="w-full !px-2 flex items-center justify-start gap-3 border border-[#181818] rounded-2xl cursor-pointer"
-                    >
-                      <div className="relative">
-                        <img src={elem.images[0]} alt="" className="w-[75px]" />
-                        <div className="absolute right-0.5 bottom-0.5 w-[18px] h-[18px] flex items-center justify-center bg-[#ff5314] rounded-[4px] text-white text-[12px]">
-                          2
+                <div className="group w-[28px] h-[28px]">
+                  <button className="cursor-pointer ">
+                    <CardSvg />
+                  </button>
+                  <div className="absolute w-[400px] h-[400px]  top-[100px] right-0 hidden flex-col justify-between items-end bg-[#a8a8a8] rounded-2xl z-50 transition-all group-focus-within:flex">
+                    {cardList.length > 0 ? (
+                      <div className="w-full h-full flex flex-col items-center justify-between">
+                        <div className="w-full flex flex-col justify-start items-start gap-1.5 !p-4 rounded-2xl overflow-y-scroll">
+                          {uniqueArray(cardList).map((elem) => (
+                            <div
+                              key={elem.id}
+                              className="w-full !px-2 flex items-center justify-start border border-[#181818] rounded-2xl cursor-pointer"
+                            >
+                              <div className="w-[75px] h-[75px] relative">
+                                <img
+                                  src={elem.images[0]}
+                                  alt=""
+                                  className="w-[75px] h-[75px] object-contain"
+                                />
+                                {productsQuantity(cardList, elem) > 1 ? (
+                                  <div className="absolute right-0.5 bottom-0.5 w-[18px] h-[18px] flex items-center justify-center bg-[#ff5314] rounded-[4px] text-white text-[12px]">
+                                    {productsQuantity(cardList, elem)}
+                                  </div>
+                                ) : (
+                                  ""
+                                )}
+                              </div>
+                              <div className="flex items-center justify-between !px-2 gap-4">
+                                <p className="text-[14px] text-[#181818] text-center text-nowrap overflow-hidden">
+                                  {elem.title}
+                                </p>
+                                <p className="text-[14px] text-[#181818] text-center font-bold">
+                                  {elem.price}$
+                                </p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="w-full flex justify-between items-center !p-4">
+                          <p className="text-[#181818] text-[18px] font-bold !ml-4">
+                            Total Price: {totalPayment(cardList)}$
+                          </p>
+                          <button className="!px-8 !py-2 rounded-[8px] bg-[#ff5314] text-[#181818] text-[16px] font-bold hover:text-white cursor-pointer">
+                            Pay Now
+                          </button>
                         </div>
                       </div>
-                      <div className="flex grow items-center justify-between !px-2 gap-4">
-                        <p className="text-[14px] text-[#181818] text-center ">
-                          {elem.title}
-                        </p>
-                        <p className="text-[14px] text-[#181818] text-center font-bold">
-                          {elem.price}$
-                        </p>
+                    ) : (
+                      <div className="w-full h-full flex justify-center items-center text-[28px] text-[#ff5314]">
+                        YOUR CARD IS EMPTY
                       </div>
-                    </div>
-                  ))}
+                    )}
+                  </div>
                 </div>
               </div>
             </div>

@@ -8,7 +8,7 @@ import { AddToCardContext } from "./Context/AddToCardContext";
 
 function App() {
   const [addToCard, setAddToCard] = useState(0);
-  const [cardList, setCardList] = useState([]);
+  const [cardList, setCardList] = useState([]); 
 
   return (
     <>
@@ -19,8 +19,6 @@ function App() {
             setAddToCard,
             cardList,
             setCardList,
-            pQuantity,
-            setPQuantity,
           }}
         >
           <Layout addToCard={addToCard}>

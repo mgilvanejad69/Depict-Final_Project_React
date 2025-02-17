@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { AddToCardContext } from "../../Context/AddToCardContext.js";
+import Categories from "./Categories.jsx";
 
 const Products = () => {
   const [productData, setProductData] = useState([]);
-  const { setAddToCard, cardList, setCardList } =
-    useContext(AddToCardContext);
+  const { setAddToCard, cardList, setCardList } = useContext(AddToCardContext);
 
   useEffect(() => {
     if (productData.length === 0) {
@@ -46,8 +46,8 @@ const Products = () => {
 
   return (
     <div className="base-container !mt-[24px]">
-      <div className="w-full flex gap-6">
-        <div className="flex justify-between items-center grow flex-wrap !p-[64px] gap-y-[64px] bg-[#FFFFFF] rounded-[50px]">
+      <div className="w-full flex gap-2">
+        <div className="flex justify-between items-center grow flex-wrap !p-4 gap-y-[64px] bg-[#FFFFFF] rounded-[50px]">
           {productData.map((elem) => (
             <div
               className="group w-[30%] max-w-[350px] h-[450px]  rounded-[50px] !p-2 flex flex-col justify-center items-center overflow-hidden relative"
@@ -101,9 +101,7 @@ const Products = () => {
             </div>
           ))}
         </div>
-        <div className="flex flex-col justify-start items-start w-[300px] !p-4 h-[600px] bg-[#FFFFFF] rounded-[50px]">
-          <div className="w-[300px] h-[200px] bg-amber-200">hi</div>
-        </div>
+        <Categories />
       </div>
     </div>
   );
