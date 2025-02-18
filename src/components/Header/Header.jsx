@@ -41,7 +41,6 @@ const Header = ({ children }) => {
     return arr.reduce((total, item) => total + item.price, 0);
   };
 
-
   return (
     <>
       <nav
@@ -54,12 +53,14 @@ const Header = ({ children }) => {
           </div>
           <div className="h-full flex justify-center items-center">
             <div className="h-full flex justify-center items-center !p-1">
-              <button className="flex justify-center items-center main-font-color main-font font-[NeueMontreal] cursor-pointer !px-4 !py-[12px] !mx-2 rounded-[8px]  hover:bg-[#E7E7E7]  transition-all duration-300">
-                Journal
-              </button>
+              <Link to="/">
+                <button className="flex justify-center items-center main-font-color main-font font-[NeueMontreal] cursor-pointer !px-4 !py-[12px] !mx-2 rounded-[8px]  hover:bg-[#E7E7E7]  transition-all duration-300">
+                  Home
+                </button>
+              </Link>
               <Link to="/Products">
                 <button className="flex justify-center items-center main-font-color main-font font-[NeueMontreal] cursor-pointer !px-4 !py-[12px] !mx-2 rounded-[8px]  hover:bg-[#E7E7E7] transition-all">
-                  Products
+                  Shopping
                 </button>
               </Link>
               <button className="flex justify-center items-center main-font-color main-font font-[NeueMontreal] cursor-pointer !px-4 !py-[12px] !mx-2 rounded-[8px]  hover:bg-[#E7E7E7] transition-all">

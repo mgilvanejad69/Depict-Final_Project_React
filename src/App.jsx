@@ -3,12 +3,14 @@ import "./App.css";
 import Layout from "./components/Layout/Layout";
 import Home from "./components/SiteBody/Home";
 import Products from "./components/SiteBody/Products";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { AddToCardContext } from "./Context/AddToCardContext";
 
 function App() {
   const [addToCard, setAddToCard] = useState(0);
-  const [cardList, setCardList] = useState([]); 
+  const [cardList, setCardList] = useState([]);
+  const categoryRef = useRef();
+  const [categoryProducts, setCategoryProducts] = useState([]);
 
   return (
     <>
@@ -19,6 +21,9 @@ function App() {
             setAddToCard,
             cardList,
             setCardList,
+            categoryRef,
+            categoryProducts,
+            setCategoryProducts,
           }}
         >
           <Layout addToCard={addToCard}>

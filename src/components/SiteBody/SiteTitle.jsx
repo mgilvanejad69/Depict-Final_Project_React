@@ -1,8 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import gsap from "gsap";
+import { AddToCardContext } from "../../Context/AddToCardContext";
 
 const SiteTitle = () => {
   const siteTitleRef = useRef();
+  const { categoryRef } = useContext(AddToCardContext);
 
   useEffect(() => {
     const siteTitleItems = Array.from(siteTitleRef.current.children);
@@ -11,12 +13,20 @@ const SiteTitle = () => {
       opacity: 0,
       ease: "none",
       duration: 0.4,
-      delay:"0.5",
+      delay: "0.5",
       stagger: {
         each: 0.1,
       },
     });
   }, []);
+
+  const handleCategoriesPage = () => {
+    gsap.to(categoryRef.current, {
+      top: "0",
+      ease: "power2.out",
+      duration: 0.5,
+    });
+  };
 
   return (
     <>
@@ -40,8 +50,11 @@ const SiteTitle = () => {
           Elevate your style, embrace confidence, <br /> and shop effortlessly
           today!
         </h3>
-        <button className="w-[176px] !px-6 !py-8 flex gap-2 items-center justify-center main-color !font-[NeueMontrealMedium] rounded-[24px] !leading-5 cursor-pointer !text-[18px]">
-          Premium Offer
+        <button
+          className="w-[176px] !px-6 !py-8 flex gap-2 items-center justify-center main-color !font-[NeueMontrealMedium] rounded-[24px] !leading-5 cursor-pointer !text-[18px]"
+          onClick={handleCategoriesPage}
+        >
+          Shop Now
         </button>
       </div>
     </>

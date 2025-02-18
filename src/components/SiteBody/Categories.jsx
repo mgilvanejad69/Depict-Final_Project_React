@@ -1,8 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AddToCardContext } from "../../Context/AddToCardContext";
+import gsap from "gsap";
+import { Link } from "react-router-dom";
 
 const Categories = () => {
   const [categoriesList, setCategoriesList] = useState([]);
-  const [categoryProducts, setCategoryProducts] = useState([]);
+
+  const { categoryRef, setCategoryProducts } = useContext(AddToCardContext);
 
   useEffect(() => {
     fetch("https://dummyjson.com/products/categories")
@@ -12,28 +16,64 @@ const Categories = () => {
   }, []);
 
   const handleSelectCategory = (item) => {
-    if (categoryProducts.length > 0) {
-      fetch(`https://dummyjson.com/products/category/${item.name}`)
-        .then((res) => res.json())
-        .then((data) => setCategoryProducts(data))
-        .catch((error) => console.log(error));
-    }
+    fetch(`https://dummyjson.com/products/category/${item.name}`)
+      .then((res) => res.json())
+      .then((data) => setCategoryProducts(data.products))
+      .catch((error) => console.log(error));
   };
-  console.log(categoryProducts);
+
+  const handleAllProducts = () => {
+    fetch("https://dummyjson.com/products")
+      .then((res) => res.json())
+      .then((newData) => setCategoryProducts(newData.products))
+      .catch((error) => console.log(error));
+  };
+
+  const handleCloseCategory = () => {
+    gsap.to(categoryRef.current, {
+      top: "-100vh",
+      ease: "power2.out",
+      duration: 0.5,
+    });
+  };
+
   return (
-    <>
-      <div className="flex flex-col justify-start items-start !w-[300px] !p-4 h-[600px] 0v overflow-hidden flex-nowrap    bg-[#FFFFFF] rounded-[50px] gap-1">
-        {categoriesList.map((elem) => (
+    <div
+      className="max-h-[100vh] h-full bg-white opacity-[95%] flex justify-center items-center fixed top-[-100vh] left-0 z-50 !p-[64px]"
+      ref={categoryRef}
+    >
+      <div className="w-[60%] h-[60%] flex flex-col justify-center items-start !p-4 bg-[#cfcfcf] rounded-[50px] shadow-2xl relative">
+        <div className="w-full flex justify-center items-center !px-[64px]">
+          <Link to="/Products">
+            <button
+              className="text-[18px] text-[#181818] font-bold cursor-pointer hover:text-[#ff5314]"
+              onClick={handleAllProducts}
+            >
+              All Categories
+            </button>
+          </Link>
+        </div>
+        <div className="flex flex-wrap justify-center items-center !p-10 ">
+          {categoriesList.map((elem) => (
+            <Link to="/Products">
+              <button
+                key={elem.name}
+                className="w-[200px] h-[40px] leading-[18px] rounded-[4px] !px-4 flex items-center cursor-pointer text-[14px] hover:text-[#ff5314]"
+                onClick={() => handleSelectCategory(elem)}
+              >
+                {elem.name}
+              </button>
+            </Link>
+          ))}
           <button
-            key={elem.id}
-            className="w-[300px] h-[40px] bg-neutral-200 rounded-[4px] !px-4 flex items-center cursor-pointer text-[14px]"
-            onClick={() => handleSelectCategory(elem)}
+            className="h-[18px] cursor-pointer absolute bottom-5 text-[14px] text-[#ff5314]"
+            onClick={handleCloseCategory}
           >
-            {elem.name}
+            Close
           </button>
-        ))}
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 
