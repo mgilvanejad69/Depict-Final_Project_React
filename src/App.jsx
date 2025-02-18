@@ -5,6 +5,7 @@ import Home from "./components/SiteBody/Home";
 import Products from "./components/SiteBody/Products";
 import { useRef, useState } from "react";
 import { AddToCardContext } from "./Context/AddToCardContext";
+import ProductDetail from "./components/SiteBody/ProductDetail";
 
 function App() {
   const [addToCard, setAddToCard] = useState(0);
@@ -30,6 +31,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />}></Route>
               <Route path="/Products" element={<Products />}></Route>
+              <Route path="/Products/:id" element={<ProductDetail />}></Route>
             </Routes>
           </Layout>
         </AddToCardContext.Provider>

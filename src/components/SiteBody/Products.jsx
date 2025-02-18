@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { AddToCardContext } from "../../Context/AddToCardContext.js";
 import Categories from "./Categories.jsx";
 import CategoriesSideBar from "./CategoriesSideBar.jsx";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Products = () => {
   const [productData, setProductData] = useState([]);
@@ -12,6 +13,7 @@ const Products = () => {
     categoryProducts,
     setCategoryProducts,
   } = useContext(AddToCardContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (categoryProducts.length === 0) {
@@ -51,9 +53,12 @@ const Products = () => {
     setCardList(newCardList);
   };
 
+  const handleProductDetail = (productID) => {
+    return navigate(`/products/${productID}`);
+  };
   return (
     <div className="base-container !mt-[24px]">
-      <div className="w-full flex gap-4">
+      <div className="w-full flex gap-4  rounded-[50px]">
         <CategoriesSideBar />
         <div className="flex justify-center items-center grow !px-[64px] !py-4 bg-[#FFFFFF] rounded-[50px]">
           <div className="flex flex-wrap justify-start gap-y-[32px] gap-x-[24px]">
@@ -61,6 +66,7 @@ const Products = () => {
               <div
                 className="group w-[30%] max-w-[350px] h-[450px]  rounded-[50px] !p-2 flex flex-col justify-center items-center overflow-hidden relative"
                 key={elem.id}
+                onClick={() => handleProductDetail(elem.id)}
               >
                 <div className="w-full h-full decoration-0 flex justify-center cursor-pointer">
                   <img

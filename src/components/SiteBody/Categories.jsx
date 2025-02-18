@@ -37,6 +37,7 @@ const Categories = () => {
     });
   };
 
+
   return (
     <div
       className="max-h-[100vh] h-full bg-white opacity-[95%] flex justify-center items-center fixed top-[-100vh] left-0 z-50 !p-[64px]"
