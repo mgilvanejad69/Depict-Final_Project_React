@@ -37,7 +37,6 @@ const Categories = () => {
     });
   };
 
-
   return (
     <div
       className="max-h-[100vh] h-full bg-white opacity-[95%] flex justify-center items-center fixed top-[-100vh] left-0 z-50 !p-[64px]"
@@ -55,10 +54,10 @@ const Categories = () => {
           </Link>
         </div>
         <div className="flex flex-wrap justify-center items-center !p-10 ">
-          {categoriesList.map((elem) => (
+          {categoriesList.map((elem, index) => (
             <Link to="/Products">
               <button
-                key={elem.name}
+                key={index}
                 className="w-[200px] h-[40px] leading-[18px] rounded-[4px] !px-4 flex items-center cursor-pointer text-[14px] hover:text-[#ff5314]"
                 onClick={() => handleSelectCategory(elem)}
               >
