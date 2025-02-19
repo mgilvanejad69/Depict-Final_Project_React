@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
+
+import AddToCardButtonProductDetail from "./AddToCardButtonProductDetail";
+
 
 const ProductDetail = () => {
   const params = useParams();
@@ -32,7 +33,7 @@ const ProductDetail = () => {
       opacity: 0,
       duration: "0.5",
       ease: "power2.out",
-      delay:"0.5"
+      delay: "0.5",
     });
 
     window.scrollTo(0, 0);
@@ -94,12 +95,10 @@ const ProductDetail = () => {
               </p>
             </div>
             <div className="flex items-center justify-center gap-5 !my-[48px]">
-              <button className="!px-[36px] !py-3 rounded-2xl bg-[#ff5314] text-[#181818] cursor-pointer hover:text-[#FFFFFF]">
+              <button className="w-[140px] h-[48px] rounded-2xl bg-[#ff5314] text-[#181818] cursor-pointer hover:text-[#FFFFFF]">
                 Buy Now
               </button>
-              <button className="!px-[36px] !py-3 rounded-2xl bg-[#ff5314] text-[#181818] cursor-pointer hover:text-[#FFFFFF]">
-                Add to Card
-              </button>
+              <AddToCardButtonProductDetail elem={singleProduct} />
             </div>
           </div>
         </div>
