@@ -1,10 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { AddToCardContext } from "../../Context/AddToCardContext";
 import gsap from "gsap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Categories = () => {
   const [categoriesList, setCategoriesList] = useState([]);
+  const navigate = useNavigate();
 
   const { categoryRef, setCategoryProducts } = useContext(AddToCardContext);
 
@@ -20,6 +21,8 @@ const Categories = () => {
       .then((res) => res.json())
       .then((data) => setCategoryProducts(data.products))
       .catch((error) => console.log(error));
+
+    return navigate("/Products");
   };
 
   const handleAllProducts = () => {
@@ -27,6 +30,8 @@ const Categories = () => {
       .then((res) => res.json())
       .then((newData) => setCategoryProducts(newData.products))
       .catch((error) => console.log(error));
+
+    return navigate("/Products");
   };
 
   const handleCloseCategory = () => {
@@ -44,26 +49,22 @@ const Categories = () => {
     >
       <div className="w-[60%] h-[60%] flex flex-col justify-center items-start !p-4 bg-[#cfcfcf] rounded-[50px] shadow-2xl relative">
         <div className="w-full flex justify-center items-center !px-[64px]">
-          <Link to="/Products">
-            <button
-              className="text-[18px] text-[#181818] font-bold cursor-pointer hover:text-[#ff5314]"
-              onClick={handleAllProducts}
-            >
-              All Categories
-            </button>
-          </Link>
+          <button
+            className="text-[18px] text-[#181818] font-bold cursor-pointer hover:text-[#ff5314]"
+            onClick={handleAllProducts}
+          >
+            All Categories
+          </button>
         </div>
         <div className="flex flex-wrap justify-center items-center !p-10 ">
           {categoriesList.map((elem, index) => (
-            <Link to="/Products">
-              <button
-                key={index}
-                className="w-[200px] h-[40px] leading-[18px] rounded-[4px] !px-4 flex items-center cursor-pointer text-[14px] hover:text-[#ff5314]"
-                onClick={() => handleSelectCategory(elem)}
-              >
-                {elem.name}
-              </button>
-            </Link>
+            <button
+              key={index}
+              className="w-[200px] h-[40px] leading-[18px] rounded-[4px] !px-4 flex items-center cursor-pointer text-[14px] hover:text-[#ff5314]"
+              onClick={() => handleSelectCategory(elem)}
+            >
+              {elem.name}
+            </button>
           ))}
           <button
             className="h-[18px] cursor-pointer absolute bottom-5 text-[14px] text-[#ff5314]"

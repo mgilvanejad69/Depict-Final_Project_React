@@ -5,6 +5,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import CardSvg from "./CardSvg";
 import { AddToCardContext } from "../../Context/AddToCardContext";
+import SearchSvg from "./SearchSvg";
 gsap.registerPlugin(ScrollTrigger);
 
 const Header = ({ children }) => {
@@ -53,6 +54,9 @@ const Header = ({ children }) => {
           </div>
           <div className="h-full flex justify-center items-center">
             <div className="h-full flex justify-center items-center !p-1">
+              <div className="group w-[56px] h-[48px] relative bg-[#FFFFFF] flex justify-center items-center main-font-color main-font font-[NeueMontreal] cursor-pointer !px-4 !py-[12px] !mx-2 rounded-[8px]  hover:bg-[#E7E7E7]  transition-all duration-300">
+                <SearchSvg />
+              </div>
               <Link to="/">
                 <button className="flex justify-center items-center main-font-color main-font font-[NeueMontreal] cursor-pointer !px-4 !py-[12px] !mx-2 rounded-[8px]  hover:bg-[#E7E7E7]  transition-all duration-300">
                   Home
@@ -66,13 +70,10 @@ const Header = ({ children }) => {
               <button className="flex justify-center items-center main-font-color main-font font-[NeueMontreal] cursor-pointer !px-4 !py-[12px] !mx-2 rounded-[8px]  hover:bg-[#E7E7E7] transition-all">
                 Contacts
               </button>
-              <button className="flex justify-center items-center main-font-color main-font font-[NeueMontreal] cursor-pointer !px-4 !py-[12px] !mx-2 rounded-[8px]  hover:bg-[#E7E7E7]  transition-all duration-300">
+              <button className="flex justify-center items-center main-font-color main-font font-[NeueMontreal] cursor-pointer !px-4 !py-[12px] !ml-2 !mr-8 rounded-[8px] hover:bg-[#E7E7E7] transition-all">
                 About us
               </button>
-              <button className="flex justify-center items-center main-font-color main-font font-[NeueMontreal] cursor-pointer !px-4 !py-[12px] !ml-2 !mr-8 rounded-[8px] hover:bg-[#E7E7E7] transition-all">
-                Search
-              </button>
-              
+
               <div className="w-[140px] h-full main-color flex justify-center items-center rounded-[24px] relative">
                 <button className="main-font-color main-font cursor-pointer">
                   SIgn In

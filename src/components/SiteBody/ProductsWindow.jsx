@@ -32,14 +32,16 @@ const ProductsWindow = () => {
   return (
     <>
       <div
-        className="flex justify-center items-center grow !px-[64px] !py-4 bg-[#FFFFFF] rounded-[50px]"
+        className={`min-h-[100vh] flex flex-wrap ${
+          categoryProducts.length % 3 === 2
+            ? "justify-start"
+            : "justify-between"
+        } items-start grow !px-[64px] !py-8 bg-[#FFFFFF] gap-y-6 rounded-[50px]`}
         ref={allProductsRef}
       >
-        <div className="flex flex-wrap justify-start gap-y-[32px] gap-x-[24px]">
-          {categoryProducts.map((elem) => (
+        {categoryProducts.map((elem) => (
             <SingleProductCard elem={elem} key={elem.id} />
           ))}
-        </div>
       </div>
     </>
   );

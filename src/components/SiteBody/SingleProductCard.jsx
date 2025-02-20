@@ -10,7 +10,7 @@ const SingleProductCard = ({ elem }) => {
   return (
     <>
       <div
-        className="group min-w-[30%] max-w-[350px] h-[450px]  rounded-[50px] !p-2 flex flex-col justify-center items-center overflow-hidden relative"
+        className="group min-w-[300px] w-[30%] max-w-[350px] h-[450px]  rounded-[50px] !p-2 flex flex-col justify-center items-center overflow-hidden relative"
         onClick={() => {
           handleProductDetail(elem.id);
         }}
