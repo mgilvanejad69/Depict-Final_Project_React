@@ -12,6 +12,7 @@ function App() {
   const [cardList, setCardList] = useState([]);
   const categoryRef = useRef();
   const [categoryProducts, setCategoryProducts] = useState([]);
+  const SignInRef = useRef();
 
   return (
     <>
@@ -25,6 +26,7 @@ function App() {
             categoryRef,
             categoryProducts,
             setCategoryProducts,
+            SignInRef
           }}
         >
           <Layout addToCard={addToCard}>

@@ -6,11 +6,12 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import CardSvg from "./CardSvg";
 import { AddToCardContext } from "../../Context/AddToCardContext";
 import SearchSvg from "./SearchSvg";
+import SignIn from "./SignIn";
 gsap.registerPlugin(ScrollTrigger);
 
 const Header = ({ children }) => {
   const myNavRef = useRef();
-  const { cardList } = useContext(AddToCardContext);
+  const { cardList, SignInRef } = useContext(AddToCardContext);
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
@@ -40,6 +41,14 @@ const Header = ({ children }) => {
 
   const totalPayment = (arr) => {
     return arr.reduce((total, item) => total + item.price, 0);
+  };
+
+  const handleOpenLoginPage = () => {
+    gsap.to(SignInRef.current, {
+      top: "0",
+      ease: "power2.out",
+      duration: 0.5,
+    });
   };
 
   return (
@@ -75,7 +84,10 @@ const Header = ({ children }) => {
               </button>
 
               <div className="w-[140px] h-full main-color flex justify-center items-center rounded-[24px] relative">
-                <button className="main-font-color main-font cursor-pointer">
+                <button
+                  className="main-font-color main-font cursor-pointer"
+                  onClick={handleOpenLoginPage}
+                >
                   SIgn In
                 </button>
                 <div className="w-[1px] h-[24px] bg-[#181818] !mx-2"></div>

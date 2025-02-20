@@ -1,3 +1,4 @@
+import SignIn from "../Header/SignIn";
 import Brands from "./Brands";
 import Cards from "./Cards";
 import Categories from "./Categories";
@@ -9,6 +10,7 @@ const Home = () => {
   return (
     <div className="base-container flex flex-col">
       <Categories />
+      <SignIn />
       <div className="w-full flex gap-4">
         <SiteTitle />
         <InfinitSlider />
