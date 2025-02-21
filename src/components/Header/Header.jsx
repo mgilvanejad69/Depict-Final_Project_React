@@ -6,13 +6,19 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import CardSvg from "./CardSvg";
 import { AddToCardContext } from "../../Context/AddToCardContext";
 import SearchSvg from "./SearchSvg";
-import SignIn from "./SignIn";
 gsap.registerPlugin(ScrollTrigger);
 
 const Header = ({ children }) => {
   const myNavRef = useRef();
-  const { cardList, SignInRef } = useContext(AddToCardContext);
-  const [totalPrice, setTotalPrice] = useState(0);
+  const {
+    cardList,
+    SignInRef,
+    userProfileInfo,
+    isLoggedIn,
+    setIsLoggedIn,
+    usernameRef,
+    passwordRef,
+  } = useContext(AddToCardContext);
 
   useEffect(() => {
     const myNav = myNavRef.current;
@@ -51,6 +57,12 @@ const Header = ({ children }) => {
     });
   };
 
+  const handleLogOut = () => {
+    setIsLoggedIn(false);
+    usernameRef.current.value = "";
+    passwordRef.current.value = "";
+  };
+
   return (
     <>
       <nav
@@ -84,18 +96,46 @@ const Header = ({ children }) => {
               </button>
 
               <div className="w-[140px] h-full main-color flex justify-center items-center rounded-[24px] relative">
-                <button
-                  className="main-font-color main-font cursor-pointer"
-                  onClick={handleOpenLoginPage}
-                >
-                  SIgn In
-                </button>
+                {isLoggedIn ? (
+                  <>
+                    <div className="flex justify-center items-center !p-2 group ">
+                      <button className="main-font-color cursor-pointer">{`${userProfileInfo[0].firstName}`}</button>
+                      <div className="absolute w-[400px] h-[400px]  top-[100px] right-0 hidden flex-col justify-between items-end bg-white border-2 border-[#ff5314] rounded-2xl z-50 transition-all group-focus-within:flex">
+                        <div className="w-full h-full flex flex-col items-center justify-center !p-8 gap-4">
+                          <div className="w-full flex justify-center items-center">
+                            <img
+                              src={userProfileInfo[0].image}
+                              alt=""
+                              className="w-[150px] h-[150px] rounded-[50%] object-cover"
+                            />
+                          </div>
+                          <div className="flex justify-center items-center gap-2">
+                            <h1 className="font-bold">{`${userProfileInfo[0].firstName} ${userProfileInfo[0].lastName}`}</h1>
+                          </div>
+                          <button
+                            className="!px-8 !py-2 rounded-[8px] bg-[#ff5314] text-[#181818] text-[16px] font-bold hover:text-white cursor-pointer !mt-[64px]"
+                            onClick={handleLogOut}
+                          >
+                            Log Out
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <button
+                    className="main-font-color main-font cursor-pointer"
+                    onClick={handleOpenLoginPage}
+                  >
+                    SIgn In
+                  </button>
+                )}
                 <div className="w-[1px] h-[24px] bg-[#181818] !mx-2"></div>
                 <div className="group w-[28px] h-[28px]">
                   <button className="cursor-pointer ">
                     <CardSvg />
                   </button>
-                  <div className="absolute w-[400px] h-[400px]  top-[100px] right-0 hidden flex-col justify-between items-end bg-[#a8a8a8] rounded-2xl z-50 transition-all group-focus-within:flex">
+                  <div className="absolute w-[400px] h-[400px]  top-[100px] right-0 hidden flex-col justify-between items-end bg-white border-2 border-[#ff5314] rounded-2xl z-50 transition-all group-focus-within:flex">
                     {cardList.length > 0 ? (
                       <div className="w-full h-full flex flex-col items-center justify-between">
                         <div className="w-full flex flex-col justify-start items-start gap-1.5 !p-4 rounded-2xl overflow-y-scroll">

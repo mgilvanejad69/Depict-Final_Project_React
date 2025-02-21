@@ -13,6 +13,10 @@ function App() {
   const categoryRef = useRef();
   const [categoryProducts, setCategoryProducts] = useState([]);
   const SignInRef = useRef();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userProfileInfo, setUserProfileInfo] = useState({});
+  const usernameRef = useRef();
+  const passwordRef = useRef();
 
   return (
     <>
@@ -26,7 +30,13 @@ function App() {
             categoryRef,
             categoryProducts,
             setCategoryProducts,
-            SignInRef
+            SignInRef,
+            userProfileInfo,
+            setUserProfileInfo,
+            isLoggedIn,
+            setIsLoggedIn,
+            usernameRef,
+            passwordRef
           }}
         >
           <Layout addToCard={addToCard}>

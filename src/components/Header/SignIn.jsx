@@ -1,39 +1,25 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { AddToCardContext } from "../../Context/AddToCardContext";
 import gsap from "gsap";
-import { useNavigate } from "react-router-dom";
 import LogoPic from "./Logo";
 
 const SignIn = () => {
-  const [categoriesList, setCategoriesList] = useState([]);
-  const navigate = useNavigate();
+  const [userList, setUserList] = useState([]);
 
-  const { SignInRef, setCategoryProducts } = useContext(AddToCardContext);
+  const {
+    SignInRef,
+    setUserProfileInfo,
+    setIsLoggedIn,
+    usernameRef,
+    passwordRef,
+  } = useContext(AddToCardContext);
 
   useEffect(() => {
-    fetch("https://dummyjson.com/products/categories")
+    fetch("https://dummyjson.com/users")
       .then((res) => res.json())
-      .then((data) => setCategoriesList(data))
+      .then((data) => setUserList(data.users))
       .catch((error) => console.log(error));
   }, []);
-
-  const handleSelectCategory = (item) => {
-    fetch(`https://dummyjson.com/products/category/${item.name}`)
-      .then((res) => res.json())
-      .then((data) => setCategoryProducts(data.products))
-      .catch((error) => console.log(error));
-
-    return navigate("/Products");
-  };
-
-  const handleAllProducts = () => {
-    fetch("https://dummyjson.com/products")
-      .then((res) => res.json())
-      .then((newData) => setCategoryProducts(newData.products))
-      .catch((error) => console.log(error));
-
-    return navigate("/Products");
-  };
 
   const handleCloseLoginPage = () => {
     gsap.to(SignInRef.current, {
@@ -42,7 +28,25 @@ const SignIn = () => {
       duration: 0.5,
     });
   };
+  const handleSubmit = () => {
+    let usernameValue = usernameRef.current.value;
+    let passwordValue = passwordRef.current.value;
 
+    let userData = userList.filter((elem) => elem.username === usernameValue);
+    if (userData.length === 0) {
+      alert("User Not Found");
+    }
+    if (usernameValue.trim() === "") {
+      alert("Please Fill Username and Password");
+    }
+    if (userData[0].password === passwordValue) {
+      setIsLoggedIn(true);
+      setUserProfileInfo(userData);
+      handleCloseLoginPage();
+    } else {
+      alert("Username Or Password is Incorrect!");
+    }
+  };
   return (
     <div
       className="w-screen max-h-[100vh] h-full bg-[#181818] opacity-[95%] flex justify-center items-center fixed left-0 top-[-100vh] z-50"
@@ -65,6 +69,7 @@ const SignIn = () => {
             id=""
             className="w-full !pl-3 h-[48px] rounded-[4px] outline-0 border border-[#a1a1a1] text-[#181818] focus:border-blue-700 focus:border-[2px]"
             placeholder="Username*"
+            ref={usernameRef}
           />
         </form>
 
@@ -78,9 +83,13 @@ const SignIn = () => {
             id=""
             className="w-full !pl-3 h-[48px] rounded-[4px] outline-0 border border-[#a1a1a1] text-[#181818] focus:border-blue-700 focus:border-[2px]"
             placeholder="Password*"
+            ref={passwordRef}
           />
         </form>
-        <button className="w-full h-[48px] bg-[#212121] text-[#FFFFFF] !mt-[48px] cursor-pointer">
+        <button
+          className="w-full h-[48px] bg-[#212121] text-[#FFFFFF] !mt-[48px] cursor-pointer"
+          onClick={handleSubmit}
+        >
           Continue
         </button>
         <button className="w-full h-[48px] bg-[#212121] text-[#FFFFFF] !mt-[8px] cursor-pointer">
