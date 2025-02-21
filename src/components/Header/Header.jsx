@@ -18,6 +18,8 @@ const Header = ({ children }) => {
     setIsLoggedIn,
     usernameRef,
     passwordRef,
+    inShopping,
+    setInShopping,
   } = useContext(AddToCardContext);
 
   useEffect(() => {
@@ -63,6 +65,14 @@ const Header = ({ children }) => {
     passwordRef.current.value = "";
   };
 
+  const handleInShopping = () => {
+    setInShopping(true);
+  };
+
+  const handleInHome = () => {
+    setInShopping(false);
+  };
+
   return (
     <>
       <nav
@@ -75,16 +85,26 @@ const Header = ({ children }) => {
           </div>
           <div className="h-full flex justify-center items-center">
             <div className="h-full flex justify-center items-center !p-1">
-              <div className="group w-[56px] h-[48px] relative bg-[#FFFFFF] flex justify-center items-center main-font-color main-font font-[NeueMontreal] cursor-pointer !px-4 !py-[12px] !mx-2 rounded-[8px]  hover:bg-[#E7E7E7]  transition-all duration-300">
-                <SearchSvg />
-              </div>
+              {inShopping ? (
+                <div className="group w-[56px] h-[48px] relative bg-[#FFFFFF] flex justify-center items-center main-font-color main-font font-[NeueMontreal] cursor-pointer !px-4 !py-[12px] !mx-2 rounded-[8px]  hover:bg-[#E7E7E7]  transition-all duration-300">
+                  <SearchSvg />
+                </div>
+              ) : (
+                ""
+              )}
               <Link to="/">
-                <button className="flex justify-center items-center main-font-color main-font font-[NeueMontreal] cursor-pointer !px-4 !py-[12px] !mx-2 rounded-[8px]  hover:bg-[#E7E7E7]  transition-all duration-300">
+                <button
+                  className="flex justify-center items-center main-font-color main-font font-[NeueMontreal] cursor-pointer !px-4 !py-[12px] !mx-2 rounded-[8px]  hover:bg-[#E7E7E7]  transition-all duration-300"
+                  onClick={handleInHome}
+                >
                   Home
                 </button>
               </Link>
               <Link to="/Products">
-                <button className="flex justify-center items-center main-font-color main-font font-[NeueMontreal] cursor-pointer !px-4 !py-[12px] !mx-2 rounded-[8px]  hover:bg-[#E7E7E7] transition-all">
+                <button
+                  className="flex justify-center items-center main-font-color main-font font-[NeueMontreal] cursor-pointer !px-4 !py-[12px] !mx-2 rounded-[8px]  hover:bg-[#E7E7E7] transition-all"
+                  onClick={handleInShopping}
+                >
                   Shopping
                 </button>
               </Link>

@@ -17,6 +17,7 @@ function App() {
   const [userProfileInfo, setUserProfileInfo] = useState({});
   const usernameRef = useRef();
   const passwordRef = useRef();
+  const [inShopping, setInShopping] = useState(false);
 
   return (
     <>
@@ -36,7 +37,9 @@ function App() {
             isLoggedIn,
             setIsLoggedIn,
             usernameRef,
-            passwordRef
+            passwordRef,
+            inShopping,
+            setInShopping,
           }}
         >
           <Layout addToCard={addToCard}>
