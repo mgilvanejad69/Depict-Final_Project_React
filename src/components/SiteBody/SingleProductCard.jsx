@@ -10,7 +10,7 @@ const SingleProductCard = ({ elem }) => {
   return (
     <>
       <div
-        className="group min-w-[300px] w-[30%] max-w-[350px] h-[450px]  rounded-[50px] !p-2 flex flex-col justify-center items-center overflow-hidden relative"
+        className="group w-full  lg:w-[33%] lg:max-w-[40%] h-[450px]  rounded-[50px] !p-2 flex flex-col justify-center items-center overflow-hidden relative"
         onClick={() => {
           handleProductDetail(elem.id);
         }}
@@ -20,7 +20,7 @@ const SingleProductCard = ({ elem }) => {
             src={elem.images[0]}
             alt=""
             loading="lazy"
-            className="w-full h-full object-contain bg-gray-600 rounded-[50px]"
+            className="w-full h-full lg:min-w-[300px] object-contain bg-gray-600 rounded-[50px]"
           />
           <div className="!px-3 w-[80%] h-[40px] max-w-[80%] absolute bottom-[54px] flex justify-between items-center bg-[#FFFFFF] opacity-80 rounded-[50px]">
             <div className="w-[70%] relative">

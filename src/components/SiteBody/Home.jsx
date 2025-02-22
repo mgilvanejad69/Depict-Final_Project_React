@@ -7,11 +7,11 @@ import OrangeBanner from "./OrangeBanner";
 import SiteTitle from "./SiteTitle";
 
 const Home = () => {
+  window.scrollTo(0, 0);
   return (
-    <div className="base-container flex flex-col">
+    <div className="w-full !p-4 base-container flex flex-col">
       <Categories />
-      <SignIn />
-      <div className="w-full flex gap-4">
+      <div className="w-full flex flex-col lg:flex-row gap-4">
         <SiteTitle />
         <InfinitSlider />
       </div>

@@ -41,9 +41,9 @@ const ProductDetail = () => {
 
   return (
     <>
-      <div className="base-container !mt-[48px] flex flex-col">
-        <div className="w-full !p-4 rounded-[50px] bg-[#FFFFFF] flex justify-evenly items-center gap-10 border border-solid border-[#181818] shadow-2xl">
-          <div className="w-[25%] !mr-[32px] ">
+      <div className="base-container !mt-[48px] flex ">
+        <div className="w-full !p-4 rounded-[50px] bg-[#FFFFFF] flex flex-col !mx-4 lg:flex-row justify-evenly items-center gap-10 border border-solid border-[#181818] shadow-2xl">
+          <div className="lg:w-[25%] lg:!mr-[32px] ">
             <img
               src={singleProduct.images}
               alt={singleProduct.title}
@@ -52,7 +52,7 @@ const ProductDetail = () => {
             />
           </div>
           <div
-            className="w-[40%] flex flex-col justify-start items-start gap-4 !mt-[36px]"
+            className="w-[80%] lg:w-[40%] flex flex-col justify-start items-start gap-4 lg:!mt-[36px]"
             ref={myProductRef}
           >
             <h1 className="text-[#181818] text-start font-bold text-[44px]">

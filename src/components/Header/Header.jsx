@@ -6,6 +6,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import CardSvg from "./CardSvg";
 import { AddToCardContext } from "../../Context/AddToCardContext";
 import SearchSvg from "./SearchSvg";
+import SignIn from "./SignIn";
 gsap.registerPlugin(ScrollTrigger);
 
 const Header = ({ children }) => {
@@ -20,7 +21,10 @@ const Header = ({ children }) => {
     passwordRef,
     inShopping,
     setInShopping,
+    signInisOpen,
+    setSignInisOpen,
   } = useContext(AddToCardContext);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const myNav = myNavRef.current;
@@ -51,13 +55,6 @@ const Header = ({ children }) => {
     return arr.reduce((total, item) => total + item.price, 0);
   };
 
-  const handleOpenLoginPage = () => {
-    gsap.to(SignInRef.current, {
-      top: "0",
-      ease: "power2.out",
-      duration: 0.5,
-    });
-  };
 
   const handleLogOut = () => {
     setIsLoggedIn(false);
@@ -75,15 +72,16 @@ const Header = ({ children }) => {
 
   return (
     <>
+      <SignIn />
       <nav
-        className="base-container h-[144px] !pt-8 !pb-4 sticky top-0 z-50"
+        className="flex w-full base-container h-[120px] lg:h-[124px] !px-4 !pt-4 !pb-4 sticky top-0 z-50"
         ref={myNavRef}
       >
-        <div className="w-full h-full !pl-8 bg-white flex justify-between items-center rounded-[30px]">
-          <div className=" h-full flex justify-center items-center">
+        <div className="w-full h-full !px-4 lg:!pl-8 bg-white flex justify-between items-center rounded-[30px]">
+          <div className="h-full flex justify-center items-center">
             <LogoPic />
           </div>
-          <div className="h-full flex justify-center items-center">
+          <div className="h-full lg:flex justify-center items-center">
             <div className="h-full flex justify-center items-center !p-1">
               {inShopping ? (
                 <div className="group w-[56px] h-[48px] relative bg-[#FFFFFF] flex justify-center items-center main-font-color main-font font-[NeueMontreal] cursor-pointer !px-4 !py-[12px] !mx-2 rounded-[8px]  hover:bg-[#E7E7E7]  transition-all duration-300">
@@ -94,7 +92,7 @@ const Header = ({ children }) => {
               )}
               <Link to="/">
                 <button
-                  className="flex justify-center items-center main-font-color main-font font-[NeueMontreal] cursor-pointer !px-4 !py-[12px] !mx-2 rounded-[8px]  hover:bg-[#E7E7E7]  transition-all duration-300"
+                  className=" hidden lg:flex justify-center items-center main-font-color main-font font-[NeueMontreal] cursor-pointer !px-4 !py-[12px] !mx-2 rounded-[8px]  hover:bg-[#E7E7E7]  transition-all duration-300 will-change-transform transform-gpu"
                   onClick={handleInHome}
                 >
                   Home
@@ -102,25 +100,25 @@ const Header = ({ children }) => {
               </Link>
               <Link to="/Products">
                 <button
-                  className="flex justify-center items-center main-font-color main-font font-[NeueMontreal] cursor-pointer !px-4 !py-[12px] !mx-2 rounded-[8px]  hover:bg-[#E7E7E7] transition-all"
+                  className=" hidden lg:flex justify-center items-center main-font-color main-font font-[NeueMontreal] cursor-pointer !px-4 !py-[12px] !mx-2 rounded-[8px]  hover:bg-[#E7E7E7] transition-all will-change-transform transform-gpu"
                   onClick={handleInShopping}
                 >
                   Shopping
                 </button>
               </Link>
-              <button className="flex justify-center items-center main-font-color main-font font-[NeueMontreal] cursor-pointer !px-4 !py-[12px] !mx-2 rounded-[8px]  hover:bg-[#E7E7E7] transition-all">
+              <button className=" hidden lg:flex justify-center items-center main-font-color main-font font-[NeueMontreal] cursor-pointer !px-4 !py-[12px] !mx-2 rounded-[8px]  hover:bg-[#E7E7E7] transition-all will-change-transform transform-gpu">
                 Contacts
               </button>
-              <button className="flex justify-center items-center main-font-color main-font font-[NeueMontreal] cursor-pointer !px-4 !py-[12px] !ml-2 !mr-8 rounded-[8px] hover:bg-[#E7E7E7] transition-all">
+              <button className=" hidden lg:flex justify-center items-center main-font-color main-font font-[NeueMontreal] cursor-pointer !px-4 !py-[12px] !ml-2 !mr-8 rounded-[8px] hover:bg-[#E7E7E7] transition-all will-change-transform transform-gpu">
                 About us
               </button>
 
-              <div className="w-[140px] h-full main-color flex justify-center items-center rounded-[24px] relative">
+              <div className="w-[90px] h-[48px] lg:w-[140px] lg:h-full main-color flex justify-end lg:justify-center items-center rounded-[16px] lg:rounded-[24px] relative">
                 {isLoggedIn ? (
                   <>
                     <div className="flex justify-center items-center !p-2 group ">
                       <button className="main-font-color cursor-pointer">{`${userProfileInfo[0].firstName}`}</button>
-                      <div className="absolute w-[400px] h-[400px]  top-[100px] right-0 hidden flex-col justify-between items-end bg-white border-2 border-[#ff5314] rounded-2xl z-50 transition-all group-focus-within:flex">
+                      <div className="absolute w-[300px] lg:w-[400px] h-[400px]  top-[100px] right-0 hidden flex-col justify-between items-end bg-white border-2 border-[#ff5314] rounded-2xl z-50 transition-all group-focus-within:flex">
                         <div className="w-full h-full flex flex-col items-center justify-center !p-8 gap-4">
                           <div className="w-full flex justify-center items-center">
                             <img
@@ -144,18 +142,25 @@ const Header = ({ children }) => {
                   </>
                 ) : (
                   <button
-                    className="main-font-color main-font cursor-pointer"
-                    onClick={handleOpenLoginPage}
+                    className="main-font-color cursor-pointer text-[12px] lg:text-[16px] font-bold"
+                    onClick={() => setSignInisOpen(!signInisOpen)}
                   >
                     SIgn In
                   </button>
                 )}
                 <div className="w-[1px] h-[24px] bg-[#181818] !mx-2"></div>
                 <div className="group w-[28px] h-[28px]">
-                  <button className="cursor-pointer ">
+                  <button
+                    className="cursor-pointer "
+                    onClick={() => setIsOpen(!isOpen)}
+                  >
                     <CardSvg />
                   </button>
-                  <div className="absolute w-[400px] h-[400px]  top-[100px] right-0 hidden flex-col justify-between items-end bg-white border-2 border-[#ff5314] rounded-2xl z-50 transition-all group-focus-within:flex">
+                  <div
+                    className={`absolute w-[300px] lg:w-[400px] ${
+                      isOpen ? "h-[400px] border-2 border-[#ff5314]" : "h-0"
+                    } top-[75px] lg:top-[100px] right-0 flex flex-col justify-between items-end bg-white  rounded-2xl z-50 transition-all duration-300`}
+                  >
                     {cardList.length > 0 ? (
                       <div className="w-full h-full flex flex-col items-center justify-between">
                         <div className="w-full flex flex-col justify-start items-start gap-1.5 !p-4 rounded-2xl overflow-y-scroll">
@@ -199,7 +204,11 @@ const Header = ({ children }) => {
                         </div>
                       </div>
                     ) : (
-                      <div className="w-full h-full flex justify-center items-center text-[28px] text-[#ff5314]">
+                      <div
+                        className={`w-full h-full ${
+                          isOpen ? "flex" : "hidden"
+                        }  justify-center items-center text-[28px] text-[#ff5314]`}
+                      >
                         YOUR CARD IS EMPTY
                       </div>
                     )}
@@ -211,6 +220,38 @@ const Header = ({ children }) => {
         </div>
       </nav>
       {children}
+      <div className="flex lg:hidden w-full h-[64px] bg-[#ffffff] fixed bottom-0 left-0 z-40 border-t border-gray-200">
+        <div className="w-[25%] flex justify-center items-center border-r border-gray-200">
+          <Link to="/">
+            <button
+              className=" lg:w-auto flex justify-center items-center main-font-color main-font font-[NeueMontreal] cursor-pointer !px-2 lg:!px-4 !py-[12px] lg:!mx-2 rounded-[8px]  hover:bg-[#E7E7E7]  transition-all duration-300 focus-within:text-[ff5314]"
+              onClick={handleInHome}
+            >
+              Home
+            </button>
+          </Link>
+        </div>
+        <div className="w-[25%] flex justify-center items-center  border-r border-gray-200">
+          <Link to="/Products">
+            <button
+              className=" lg:w-auto flex justify-center items-center main-font-color main-font font-[NeueMontreal] cursor-pointer !px-2 lg:!px-4 !py-[12px] lg:!mx-2 rounded-[8px]  hover:bg-[#E7E7E7] transition-all focus-within:text-[ff5314]"
+              onClick={handleInShopping}
+            >
+              Shopping
+            </button>
+          </Link>
+        </div>
+        <div className="w-[25%] flex justify-center items-center  border-r border-gray-200">
+          <button className=" lg:w-auto flex justify-center items-center main-font-color main-font font-[NeueMontreal] cursor-pointer !px-2 lg:!px-4 !py-[12px] lg:!mx-2 rounded-[8px]  hover:bg-[#E7E7E7] transition-all focus-within:text-[ff5314]">
+            Contacts
+          </button>
+        </div>
+        <div className="w-[25%] flex justify-center items-center">
+          <button className=" lg:w-auto flex justify-center items-center main-font-color main-font font-[NeueMontreal] cursor-pointer !px-2 lg:!px-4 !py-[12px] lg:!ml-2 lg:!mr-8 rounded-[8px] hover:bg-[#E7E7E7] transition-all focus-within:text-[ff5314]">
+            About us
+          </button>
+        </div>
+      </div>
     </>
   );
 };

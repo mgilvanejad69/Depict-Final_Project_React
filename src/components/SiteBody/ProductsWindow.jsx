@@ -30,20 +30,22 @@ const ProductsWindow = () => {
   }, []);
 
   return (
-    <>
+    <div className="w-full !px-4">
+      <div className="w-full lg:grow min-h-[100vh] flex justify-between items-center lg:items-start !p-4 lg:!px-[32px]  !mx-auto lg:!py-8 bg-[#FFFFFF] lg:gap-y-6 gap-2 rounded-[50px]">
       <div
-        className={`min-h-[100vh] flex flex-wrap ${
+        className={`w-full lg:grow min-h-[100vh] flex flex-wrap ${
           categoryProducts.length % 3 === 2
             ? "justify-start"
             : "justify-between"
-        } items-start grow !px-[64px] !py-8 bg-[#FFFFFF] gap-y-6 rounded-[50px]`}
+        } items-start  lg:!mx-4  bg-[#FFFFFF] gap-y-6 rounded-[50px]`}
         ref={allProductsRef}
       >
         {categoryProducts.map((elem) => (
-            <SingleProductCard elem={elem} key={elem.id} />
-          ))}
+          <SingleProductCard elem={elem} key={elem.id} />
+        ))}
       </div>
-    </>
+    </div>
+    </div>
   );
 };
 

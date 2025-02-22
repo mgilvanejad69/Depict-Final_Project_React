@@ -5,6 +5,9 @@
   padding: 0;
   margin: 0;
 }
+html {
+  overflow-y: scroll;
+}
 
 body {
   width: 100%;
@@ -40,12 +43,13 @@ body {
   src: url("/public/font/NeueMontreal-Bold.woff2") format("woff");
 }
 
-.base-container {
-  width: 100% !important;
-  max-width: 1600px;
-  display: flex;
-  margin: auto;
-  padding: 0 40px;
+@media (min-width: 1024px) {
+  .base-container {
+    width: 100% !important;
+    max-width: 1600px;
+    display: flex;
+    margin: auto;
+  }
 }
 
 .main-color {

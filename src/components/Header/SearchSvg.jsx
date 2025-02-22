@@ -5,6 +5,7 @@ const SearchSvg = () => {
   const [inputValue, setInputValue] = useState("");
   const [debouncedValue, setDebouncedValue] = useState("");
   const { setCategoryProducts } = useContext(AddToCardContext);
+  const [isOpen, setIsOpen] = useState(false);
   const inputRef = useRef();
 
   useEffect(() => {
@@ -46,7 +47,10 @@ const SearchSvg = () => {
             x
           </button>
         ) : (
-          <button className="absolute top-0 right-0 z-20 w-[56px] h-[48px] opacity-70 flex items-center justify-center !pb-1 cursor-pointer">
+          <button
+            className="absolute top-0 right-0 z-20 w-[56px] h-[48px] opacity-70 flex items-center justify-center !pb-1 cursor-pointer"
+            onClick={() => setIsOpen(!isOpen)}
+          >
             <svg
               xmlnsXlink="http://www.w3.org/1999/xlink"
               xmlns="http://www.w3.org/2000/svg"
@@ -78,14 +82,18 @@ const SearchSvg = () => {
             </svg>
           </button>
         )}
-        <form className="absolute top-0 right-0 z-10">
+        <form className="absolute top-[55px] lg:top-0 right-0 z-10">
           <input
             type="text"
             name=""
             id=""
             className={`${
-              inputValue.length > 0 ? "w-[450px] !pl-3" : "w-0"
-            } h-[48px] text-[#181818]  border-[#ff5314] outline-0 rounded-[8px] !pr-[56px] transition-all duration-500 ease-out group-focus-within:w-[450px] placeholder:opacity-0 group-focus-within:border group-focus-within:placeholder:opacity-100 group-focus-within:!pl-3`}
+              inputValue.length > 0 ? "w-[350px] !pl-3" : "w-0"
+            } h-[48px] text-[#181818]  border-[#ff5314] outline-0 rounded-[8px] !pr-[56px]  transition-all duration-500 ease-out ${
+              isOpen
+                ? "w-[250px] lg:w-[350px] bg-[#FFFFFF] border !pl-3"
+                : "w-0"
+            }`}
             placeholder="Search"
             onChange={(e) => setInputValue(e.target.value)}
             ref={inputRef}

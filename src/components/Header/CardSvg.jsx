@@ -12,7 +12,7 @@ const CardSvg = () => {
         viewBox="0 0 32 32"
         width="28"
         height="28"
-        className=""
+        className="w-[18px] lg:w-[28px]"
       >
         <path
           fill="#181818"

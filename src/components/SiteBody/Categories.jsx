@@ -44,7 +44,7 @@ const Categories = () => {
 
   return (
     <div
-      className="max-h-[100vh] h-full bg-white opacity-[95%] flex justify-center items-center fixed top-[-100vh] left-0 z-50 !p-[64px]"
+      className="max-h-[100vh] h-full bg-white opacity-[95%] hidden lg:flex justify-center items-center fixed top-[-100vh] left-0 z-50 !p-[64px]"
       ref={categoryRef}
     >
       <div className="w-[60%] h-[60%] flex flex-col justify-center items-start !p-4 bg-[#cfcfcf] rounded-[50px] shadow-2xl relative">

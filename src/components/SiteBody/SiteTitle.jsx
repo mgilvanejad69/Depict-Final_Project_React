@@ -31,17 +31,17 @@ const SiteTitle = () => {
   return (
     <>
       <div
-        className="w-[40%] h-[660px] bg-white rounded-[50px] !p-[64px] flex flex-col items-start justify-start gap-5 opacity-100"
+        className="w-[100%] lg:w-[40%] lg:h-[660px] bg-white rounded-[50px] !px-6 !py-8 lg:!p-[64px] lg:flex flex-col items-start justify-start gap-5 opacity-100"
         ref={siteTitleRef}
       >
-        <div className="!px-4 !py-3 !mb-2 bg-[#E7E7E7] rounded-[8px] flex items-center justify-center gap-2">
+        <div className="!px-4 !py-3 !mb-2 bg-[#E7E7E7] rounded-[8px] hidden lg:flex items-center justify-center gap-2">
           <img
             src="https://cdn.prod.website-files.com/6630ceeee6fd1a867237f62e/664dab427e473146df5cd04f_shopify%201.svg"
             alt="shopify-icon"
           />
           <div className="black-color !font-medium">Made for Shopify</div>
         </div>
-        <h1 className="text-[64px] !leading-[64px]  !font-[NeueMontrealBold]">
+        <h1 className="text-[44px] !leading-[44px] lg:text-[64px] lg:!leading-[64px]  !font-[NeueMontrealBold]">
           Look Good✨ Feel Great,
           <br /> Dress Smart, <br />
           Shop Now.
@@ -51,7 +51,7 @@ const SiteTitle = () => {
           today!
         </h3>
         <button
-          className="w-[176px] !px-6 !py-8 flex gap-2 items-center justify-center main-color !font-[NeueMontrealMedium] rounded-[24px] !leading-5 cursor-pointer !text-[18px]"
+          className="w-[176px] !px-6 !py-6 lg:!py-8 !mt-8 lg:m-0 flex gap-2 items-center justify-center main-color !font-[NeueMontrealMedium] rounded-[24px] !leading-5 cursor-pointer !text-[18px]"
           onClick={handleCategoriesPage}
         >
           Shop Now

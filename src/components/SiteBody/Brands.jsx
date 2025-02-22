@@ -46,7 +46,7 @@ const Brands = () => {
         Loved By Fashion Brands
       </div>
       <div className="brands-container  flex justify-start items-center !mt-6 ">
-        <div className="flex gap-[160px]" ref={brandsRef}>
+        <div className="flex gap-[80px] lg:gap-[160px]" ref={brandsRef}>
           {BRANDS.map((elem) => (
             <img
               key={elem.id}

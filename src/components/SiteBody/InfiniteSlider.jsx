@@ -40,7 +40,7 @@ const InfinitSlider = () => {
 
   return (
     <>
-      <div className="slider w-[60%] h-[660px] bg-white rounded-[50px] p-6 flex items-center justify-center gap-5 relative cursor-grab overflow-hidden">
+      <div className="slider w-full lg:w-[60%] lg:h-[660px] bg-white rounded-[50px] p-6 lg:flex items-center justify-center gap-5 relative cursor-grab overflow-hidden">
         <div
           className="slider-track h-[550px] flex"
           ref={sliderTrackRef}

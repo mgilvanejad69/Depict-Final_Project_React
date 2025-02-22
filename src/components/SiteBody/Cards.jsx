@@ -47,7 +47,7 @@ const Cards = () => {
   }, []);
   return (
     <div
-      className="w-full min-h-screen flex flex-col justify-start items-center relative"
+      className="w-full min-h-screen hidden lg:flex flex-col justify-start items-center relative"
       ref={cardsBoxRef}
     >
       <div className="w-[640px] h-[40vh] flex justify-center items-end">
