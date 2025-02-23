@@ -31,7 +31,7 @@ const CategoriesSideBar = () => {
   };
 
   return (
-    <div className="w-full lg:w-[250px] !px-4">
+    <div className="w-full lg:w-[250px] !px-4 lg:!mt-[64px]">
       <div className="w-full lg:w-[250px] flex flex-col items-center gap-2 ">
         <button
           className="w-full flex justify-center items-center text-[14px] gap-1 lg:hidden"
@@ -47,10 +47,10 @@ const CategoriesSideBar = () => {
         <div
           className={`w-full lg:min-w-[250px] lg:w-[250px] lg:!pt-6 ${
             isOpen ? "h-[300px] !pt-6" : "h-0"
-          } lg:h-[400px] overflow-y-scroll overflow-x-hidden bg-white flex flex-col justify-start items-center rounded-[50px] !pl-4 transition-all duration-300`}
+          } lg:h-[400px] overflow-y-scroll overflow-x-hidden bg-white flex flex-col justify-start items-center rounded-[2px] border border-[#ff5314] !pl-4 transition-all duration-300`}
         >
           <button
-            className="w-full lg:w-[250px] !px-[32px] lg:!px-4 text-[18px] text-start text-[#181818] font-bold cursor-pointer hover:text-[#ff5314]"
+            className="w-full lg:w-[250px] !px-[32px] lg:!px-4 text-[18px] text-start text-[#ff5314] font-bold cursor-pointer hover:text-[#181818]"
             onClick={handleAllProducts}
           >
             All Categories
@@ -58,7 +58,7 @@ const CategoriesSideBar = () => {
           {categoriesList.map((elem) => (
             <button
               key={elem.name}
-              className="w-full lg:w-[250px] leading-[24px] !px-[32px] lg:!px-4 flex items-center cursor-pointer text-[14px] hover:text-[#ff5314]"
+              className="w-full lg:w-[250px] leading-[24px] text-[#ff5314] !px-[32px] lg:!px-4 flex items-center cursor-pointer text-[14px] hover:text-[#181818]"
               onClick={() => handleSelectCategory(elem)}
             >
               {elem.name}

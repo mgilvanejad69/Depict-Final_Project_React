@@ -23,6 +23,18 @@ body {
   font-family: NeueMontrealRegular;
 }
 
+::-webkit-scrollbar{
+  width: 3px;
+}
+
+::-webkit-scrollbar-track{
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb{
+  background: #afafaf;
+  border-radius: 16px;
+}
+
 @font-face {
   font-family: NeueMontreal;
   src: url("/public/font/NeueMontreal-Light.woff2") format("woff");

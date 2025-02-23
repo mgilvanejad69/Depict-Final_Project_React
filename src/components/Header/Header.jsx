@@ -7,18 +7,17 @@ import CardSvg from "./CardSvg";
 import { AddToCardContext } from "../../Context/AddToCardContext";
 import SearchSvg from "./SearchSvg";
 import SignIn from "./SignIn";
+import AddToCardButtoninCardBox from "../SiteBody/AddToCardButtoninCardBox";
 gsap.registerPlugin(ScrollTrigger);
 
 const Header = ({ children }) => {
   const myNavRef = useRef();
   const {
     cardList,
-    SignInRef,
     userProfileInfo,
     isLoggedIn,
     setIsLoggedIn,
-    usernameRef,
-    passwordRef,
+    reset,
     inShopping,
     setInShopping,
     signInisOpen,
@@ -55,11 +54,9 @@ const Header = ({ children }) => {
     return arr.reduce((total, item) => total + item.price, 0);
   };
 
-
   const handleLogOut = () => {
     setIsLoggedIn(false);
-    usernameRef.current.value = "";
-    passwordRef.current.value = "";
+    reset();
   };
 
   const handleInShopping = () => {
@@ -157,40 +154,49 @@ const Header = ({ children }) => {
                     <CardSvg />
                   </button>
                   <div
-                    className={`absolute w-[300px] lg:w-[400px] ${
-                      isOpen ? "h-[400px] border-2 border-[#ff5314]" : "h-0"
+                    className={`absolute w-[300px] lg:w-[800px] ${
+                      isOpen
+                        ? "h-[400px] lg:h-[550px] border-2 border-[#ff5314]"
+                        : "h-0"
                     } top-[75px] lg:top-[100px] right-0 flex flex-col justify-between items-end bg-white  rounded-2xl z-50 transition-all duration-300`}
                   >
                     {cardList.length > 0 ? (
-                      <div className="w-full h-full flex flex-col items-center justify-between">
+                      <div
+                        className={`w-full h-full ${
+                          isOpen ? "flex" : "hidden"
+                        }  flex-col items-center justify-between`}
+                      >
                         <div className="w-full flex flex-col justify-start items-start gap-1.5 !p-4 rounded-2xl overflow-y-scroll">
                           {uniqueArray(cardList).map((elem) => (
                             <div
                               key={elem.id}
-                              className="w-full !px-2 flex items-center justify-start border border-[#181818] rounded-2xl cursor-pointer"
+                              className="w-full !px-2 flex items-center justify-between border border-[#181818] rounded-2xl cursor-pointer"
                             >
-                              <div className="w-[75px] h-[75px] relative">
-                                <img
-                                  src={elem.images[0]}
-                                  alt=""
-                                  className="w-[75px] h-[75px] object-contain"
-                                />
-                                {productsQuantity(cardList, elem) > 1 ? (
-                                  <div className="absolute right-0.5 bottom-0.5 w-[18px] h-[18px] flex items-center justify-center bg-[#ff5314] rounded-[4px] text-white text-[12px]">
-                                    {productsQuantity(cardList, elem)}
-                                  </div>
-                                ) : (
-                                  ""
-                                )}
+                              <div className="flex justify-start items-center !px-5">
+                                <div className="w-[75px] h-[75px] relative">
+                                  <img
+                                    src={elem.images[0]}
+                                    alt=""
+                                    className="w-[75px] h-[75px] object-contain"
+                                  />
+                                  {productsQuantity(cardList, elem) > 1 ? (
+                                    <div className="absolute right-0.5 bottom-0.5 w-[18px] h-[18px] flex items-center justify-center bg-[#ff5314] rounded-[4px] text-white text-[12px]">
+                                      {productsQuantity(cardList, elem)}
+                                    </div>
+                                  ) : (
+                                    ""
+                                  )}
+                                </div>
+                                <div className="flex items-center justify-between !px-2 gap-4 relative">
+                                  <p className="text-[14px] text-[#181818] text-center text-nowrap overflow-hidden">
+                                    {elem.title}
+                                  </p>
+                                  <p className="text-[14px] text-[#181818] text-center font-bold">
+                                    {elem.price}$
+                                  </p>
+                                </div>
                               </div>
-                              <div className="flex items-center justify-between !px-2 gap-4">
-                                <p className="text-[14px] text-[#181818] text-center text-nowrap overflow-hidden">
-                                  {elem.title}
-                                </p>
-                                <p className="text-[14px] text-[#181818] text-center font-bold">
-                                  {elem.price}$
-                                </p>
-                              </div>
+                              <AddToCardButtoninCardBox elem={elem} />
                             </div>
                           ))}
                         </div>

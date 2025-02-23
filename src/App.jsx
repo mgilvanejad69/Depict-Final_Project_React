@@ -6,6 +6,7 @@ import Products from "./components/SiteBody/Products";
 import { useRef, useState } from "react";
 import { AddToCardContext } from "./Context/AddToCardContext";
 import ProductDetail from "./components/SiteBody/ProductDetail";
+import { useForm } from "react-hook-form";
 
 function App() {
   const [addToCard, setAddToCard] = useState(0);
@@ -15,10 +16,9 @@ function App() {
   const SignInRef = useRef();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userProfileInfo, setUserProfileInfo] = useState({});
-  const usernameRef = useRef();
-  const passwordRef = useRef();
   const [inShopping, setInShopping] = useState(false);
   const [signInisOpen, setSignInisOpen] = useState(false);
+  const { register, handleSubmit, reset } = useForm();
 
   return (
     <>
@@ -37,12 +37,13 @@ function App() {
             setUserProfileInfo,
             isLoggedIn,
             setIsLoggedIn,
-            usernameRef,
-            passwordRef,
             inShopping,
             setInShopping,
             signInisOpen,
             setSignInisOpen,
+            register,
+            handleSubmit,
+            reset,
           }}
         >
           <Layout addToCard={addToCard}>
