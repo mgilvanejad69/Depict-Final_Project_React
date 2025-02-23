@@ -19,6 +19,8 @@ function App() {
   const [inShopping, setInShopping] = useState(false);
   const [signInisOpen, setSignInisOpen] = useState(false);
   const { register, handleSubmit, reset } = useForm();
+  const [cardIsOpen, setCardIsOpen] = useState(false);
+  const [signUp, setSignUp] = useState(false);
 
   return (
     <>
@@ -44,6 +46,10 @@ function App() {
             register,
             handleSubmit,
             reset,
+            cardIsOpen,
+            setCardIsOpen,
+            signUp,
+            setSignUp,
           }}
         >
           <Layout addToCard={addToCard}>

@@ -22,9 +22,9 @@ const AddToCardButtoninCardBox = ({ elem }) => {
   };
   return (
     <>
-      <div className="w-[112px] h-[36px] text-[#181818] border border-[#ff5314] !bg-white text-[14px] !pb-1  main-color flex justify-between items-center rounded-[8px] cursor-pointer z-40">
+      <div className="w-[60px] lg:w-[112px] h-5 lg:h-[36px] text-[#181818]  !bg-white text-[14px] !pb-1  main-color flex justify-between items-center rounded-[8px] cursor-pointer absolute right-[35px] -bottom-2 lg:static z-40">
           <button
-            className="text-[24px] text-[#ff5314] !px-5 cursor-pointer !pb-1"
+            className="text-[24px] text-[#ff5314] !px-2 lg:!px-5 cursor-pointer !pb-1"
             onClick={(event) => {
               event.stopPropagation();
               handleRemoveFromCard(elem);
@@ -32,11 +32,11 @@ const AddToCardButtoninCardBox = ({ elem }) => {
           >
             -
           </button>
-          <p className="text-[#ff5314] text-[16px]">
+          <p className="text-[#ff5314] text-[14px] lg:text-[16px]">
             {productsQuantity(cardList, elem)}
           </p>
           <button
-            className="text-[20px] text-[#ff5314] !px-5 cursor-pointer"
+            className="text-[20px] text-[#ff5314] !px-2 lg:!px-5 cursor-pointer"
             onClick={(event) => {
               event.stopPropagation();
               handleAddToCard(elem);

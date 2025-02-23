@@ -2,11 +2,13 @@ import { useContext } from "react";
 import { AddToCardContext } from "../../Context/AddToCardContext";
 
 const AddToCardButtonProductDetail = ({ elem }) => {
-  const { setAddToCard, cardList, setCardList } = useContext(AddToCardContext);
+  const { setAddToCard, cardList, setCardList, setCardIsOpen } =
+    useContext(AddToCardContext);
 
   const handleAddToCard = (item) => {
     setAddToCard((prev) => prev + 1);
     setCardList([...cardList, item]);
+    setCardIsOpen(false);
   };
 
   const productsQuantity = (arr, item) => {
@@ -19,6 +21,7 @@ const AddToCardButtonProductDetail = ({ elem }) => {
     let itemIndex = newCardList.findIndex((elem) => elem.id == item.id);
     newCardList.splice(itemIndex, 1);
     setCardList(newCardList);
+    setCardIsOpen(false);
   };
   return (
     <>

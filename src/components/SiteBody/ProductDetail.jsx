@@ -4,7 +4,6 @@ import gsap from "gsap";
 
 import AddToCardButtonProductDetail from "./AddToCardButtonProductDetail";
 
-
 const ProductDetail = () => {
   const params = useParams();
   const [singleProduct, setSingleProduct] = useState({});
@@ -41,8 +40,8 @@ const ProductDetail = () => {
 
   return (
     <>
-      <div className="base-container !mt-[48px] flex ">
-        <div className="w-full !p-4 rounded-[50px] bg-[#FFFFFF] flex flex-col !mx-4 lg:flex-row justify-evenly items-center gap-10 border border-solid border-[#181818] shadow-2xl">
+      <div className="base-container !mt-4 lg:!mt-[48px] flex ">
+        <div className="w-full !p-4 rounded-[50px] bg-[#FFFFFF] flex flex-col !mx-4 lg:flex-row justify-evenly items-center lg:gap-10 border border-solid border-[#181818] shadow-2xl">
           <div className="lg:w-[25%] lg:!mr-[32px] ">
             <img
               src={singleProduct.images}
@@ -52,49 +51,61 @@ const ProductDetail = () => {
             />
           </div>
           <div
-            className="w-[80%] lg:w-[40%] flex flex-col justify-start items-start gap-4 lg:!mt-[36px]"
+            className="w-[100%] lg:w-[40%] flex flex-col justify-start items-start gap-1 lg:gap-4 lg:!mt-[36px]"
             ref={myProductRef}
           >
-            <h1 className="text-[#181818] text-start font-bold text-[44px]">
+            <h1 className="text-[#181818] text-start font-bold text-[24px] lg:text-[44px]">
               {singleProduct.title}
             </h1>
             <div className="flex items-center justify-between gap-2">
-              <p className="text-[#181818] text-[18px] font-bold">Brand:</p>
-              <p className="text-[#181818] text-[18px]">
+              <p className="text-[#181818] text-[18px] lg:text-[22px] font-bold">
+                Price:
+              </p>
+              <p className="text-[#ff5314] text-[20px] xl:text-[24px] font-bold">
+                {singleProduct.price}$
+              </p>
+            </div>
+            <div className="flex items-center justify-between gap-2">
+              <p className="text-[#181818] text-[14px] lg:text-[18px] font-bold">
+                Brand:
+              </p>
+              <p className="text-[#181818] text-[14px] lg:text-[18px]">
                 {singleProduct.brand}
               </p>
             </div>
             <div className="flex items-center justify-between gap-2">
-              <p className="text-[#181818] text-[18px] font-bold">Category:</p>
-              <p className="text-[#181818] text-[18px]">
+              <p className="text-[#181818] text-[14px] lg:text-[18px] font-bold">
+                Category:
+              </p>
+              <p className="text-[#181818] text-[14px] lg:text-[18px]">
                 {singleProduct.category}
               </p>
             </div>
             <div className="flex items-center justify-between gap-2">
-              <p className="text-[#181818] text-[18px] font-bold">
+              <p className="text-[#181818] text-[14px] lg:text-[18px] font-bold">
                 Shipping Information:
               </p>
-              <p className="text-[#181818] text-[18px]">
+              <p className="text-[#181818] text-[14px] lg:text-[18px]">
                 {singleProduct.shippingInformation}
               </p>
             </div>
             <div className="flex items-center justify-between gap-2">
-              <p className="text-[#181818] text-[18px] font-bold">
+              <p className="text-[#181818] text-[14px] lg:text-[18px] font-bold">
                 Availability Status:
               </p>
-              <p className="text-[#181818] text-[18px]">
+              <p className="text-[#181818] text-[14px] lg:text-[18px]">
                 {singleProduct.availabilityStatus}
               </p>
             </div>
             <div className="flex flex-col items-start justify-between gap-2">
-              <p className="text-[#181818] text-[18px] font-bold">
+              <p className="text-[#181818] text-[14px] lg:text-[18px] font-bold">
                 Descriptions:
               </p>
-              <p className="text-[#181818] text-[18px]">
+              <p className="text-[#181818] text-[14px] lg:text-[18px]">
                 {singleProduct.description}
               </p>
             </div>
-            <div className="flex items-center justify-center gap-5 !my-[48px]">
+            <div className="flex items-center justify-center !mx-auto lg:!mx-0 gap-5 !my-[24px]">
               <button className="w-[140px] h-[48px] rounded-2xl bg-[#ff5314] text-[#181818] cursor-pointer hover:text-[#FFFFFF]">
                 Buy Now
               </button>

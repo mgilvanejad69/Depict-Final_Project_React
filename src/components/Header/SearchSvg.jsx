@@ -7,6 +7,7 @@ const SearchSvg = () => {
   const { setCategoryProducts } = useContext(AddToCardContext);
   const [isOpen, setIsOpen] = useState(false);
   const inputRef = useRef();
+  const searchIconRef = useRef();
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -36,6 +37,28 @@ const SearchSvg = () => {
     inputRef.current.value = "";
   };
 
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      setInputValue("");
+      setDebouncedValue("");
+      inputRef.current.value = "";
+      setIsOpen(false);
+    }
+  });
+
+  document.addEventListener("mousedown", (event) => {
+    if (
+      inputRef.current &&
+      !inputRef.current.contains(event.target) &&
+      !searchIconRef.current.contains(event.target)
+    ) {
+      setInputValue("");
+      setDebouncedValue("");
+      inputRef.current.value = "";
+      setIsOpen(false);
+    }
+  });
+
   return (
     <div>
       <div className="flex items-center justify-center cursor-pointer">
@@ -50,6 +73,7 @@ const SearchSvg = () => {
           <button
             className="absolute top-0 right-0 z-20 w-[56px] h-[48px] opacity-70 flex items-center justify-center !pb-1 cursor-pointer"
             onClick={() => setIsOpen(!isOpen)}
+            ref={searchIconRef}
           >
             <svg
               xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -88,7 +112,7 @@ const SearchSvg = () => {
             name=""
             id=""
             className={`${
-              inputValue.length > 0 ? "w-[350px] !pl-3" : "w-0"
+              inputValue.length > 0 ? "w-[250px] lg:w-[350px] !pl-3" : "w-0"
             } h-[48px] text-[#181818]  border-[#ff5314] outline-0 rounded-[8px] !pr-[56px]  transition-all duration-500 ease-out ${
               isOpen
                 ? "w-[250px] lg:w-[350px] bg-[#FFFFFF] border !pl-3"

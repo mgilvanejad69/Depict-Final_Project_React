@@ -4,7 +4,6 @@ import LogoPic from "./Logo";
 
 const SignIn = () => {
   const [userList, setUserList] = useState([]);
-  const [signUp, setSignUp] = useState(false);
 
   const {
     SignInRef,
@@ -15,6 +14,8 @@ const SignIn = () => {
     register,
     handleSubmit,
     reset,
+    signUp,
+    setSignUp,
   } = useContext(AddToCardContext);
 
   useEffect(() => {
@@ -66,6 +67,11 @@ const SignIn = () => {
     setSignUp(false);
   };
 
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      setSignInisOpen(false);
+    }
+  });
 
   return (
     <div
@@ -85,8 +91,8 @@ const SignIn = () => {
             className="flex flex-col items-center gap-6 w-full relative"
             onSubmit={handleSubmit(handleSiteSubmit)}
           >
-            <div className="flex flex-col lg:flex-row justify-center items-start gap-2 lg:gap-[80px] lg:!mt-9">
-              <div className="flex flex-col items-start justify-start gap-2 lg:gap-4">
+            <div className="w-full flex flex-col lg:flex-row justify-center items-start gap-2 lg:gap-[32px] lg:!mt-9">
+              <div className="w-full flex flex-col items-start justify-start gap-2 lg:gap-4">
                 <input
                   type="text"
                   className="w-full !pl-3 h-[48px] rounded-[4px] outline-0 border border-[#a1a1a1] text-[#181818] focus:border-blue-700 focus:border-[2px]"
@@ -107,7 +113,7 @@ const SignIn = () => {
                   {...register("username", { required: true })}
                 />
               </div>
-              <div className="flex flex-col items-start justify-start gap-2 lg:gap-4">
+              <div className="w-full flex flex-col items-start justify-start gap-2 lg:gap-4">
                 <input
                   type="text"
                   className="w-full !pl-3 h-[48px] rounded-[4px] outline-0 border border-[#a1a1a1] text-[#181818] focus:border-blue-700 focus:border-[2px]"

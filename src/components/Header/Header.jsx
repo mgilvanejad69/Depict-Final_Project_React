@@ -1,7 +1,7 @@
 import { gsap } from "gsap";
 import { Link } from "react-router-dom";
 import LogoPic from "./Logo";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef } from "react";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import CardSvg from "./CardSvg";
 import { AddToCardContext } from "../../Context/AddToCardContext";
@@ -22,8 +22,13 @@ const Header = ({ children }) => {
     setInShopping,
     signInisOpen,
     setSignInisOpen,
+    cardIsOpen,
+    setCardIsOpen,
+    setSignUp,
   } = useContext(AddToCardContext);
-  const [isOpen, setIsOpen] = useState(false);
+
+  const cardRef = useRef();
+  const iconCardRef = useRef();
 
   useEffect(() => {
     const myNav = myNavRef.current;
@@ -61,11 +66,29 @@ const Header = ({ children }) => {
 
   const handleInShopping = () => {
     setInShopping(true);
+    setCardIsOpen(false);
   };
 
   const handleInHome = () => {
     setInShopping(false);
+    setCardIsOpen(false);
   };
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      setCardIsOpen(false);
+    }
+  });
+
+  document.addEventListener("mousedown", (event) => {
+    if (
+      cardRef.current &&
+      !cardRef.current.contains(event.target) &&
+      !iconCardRef.current.contains(event.target)
+    ) {
+      setCardIsOpen(false);
+    }
+  });
 
   return (
     <>
@@ -140,7 +163,10 @@ const Header = ({ children }) => {
                 ) : (
                   <button
                     className="main-font-color cursor-pointer text-[12px] lg:text-[16px] font-bold"
-                    onClick={() => setSignInisOpen(!signInisOpen)}
+                    onClick={() => {
+                      setSignInisOpen(!signInisOpen);
+                      setSignUp(false);
+                    }}
                   >
                     SIgn In
                   </button>
@@ -149,48 +175,52 @@ const Header = ({ children }) => {
                 <div className="group w-[28px] h-[28px]">
                   <button
                     className="cursor-pointer "
-                    onClick={() => setIsOpen(!isOpen)}
+                    onClick={() => setCardIsOpen(!cardIsOpen)}
+                    ref={iconCardRef}
                   >
                     <CardSvg />
                   </button>
                   <div
                     className={`absolute w-[300px] lg:w-[800px] ${
-                      isOpen
-                        ? "h-[400px] lg:h-[550px] border-2 border-[#ff5314]"
+                      cardIsOpen
+                        ? "h-[400px] lg:h-[550px] border-2 border-[#181818]"
                         : "h-0"
                     } top-[75px] lg:top-[100px] right-0 flex flex-col justify-between items-end bg-white  rounded-2xl z-50 transition-all duration-300`}
+                    ref={cardRef}
                   >
                     {cardList.length > 0 ? (
                       <div
                         className={`w-full h-full ${
-                          isOpen ? "flex" : "hidden"
+                          cardIsOpen ? "flex" : "hidden"
                         }  flex-col items-center justify-between`}
                       >
-                        <div className="w-full flex flex-col justify-start items-start gap-1.5 !p-4 rounded-2xl overflow-y-scroll">
+                        <div className="max-w-full w-full flex flex-col justify-start items-start gap-2 !p-2 lg:!p-4 rounded-2xl overflow-y-scroll">
                           {uniqueArray(cardList).map((elem) => (
                             <div
                               key={elem.id}
-                              className="w-full !px-2 flex items-center justify-between border border-[#181818] rounded-2xl cursor-pointer"
+                              className="w-full h-[60px] lg:h-auto !px-2 flex items-center justify-between border border-[#181818] rounded-2xl cursor-pointer relative"
                             >
-                              <div className="flex justify-start items-center !px-5">
-                                <div className="w-[75px] h-[75px] relative">
-                                  <img
-                                    src={elem.images[0]}
-                                    alt=""
-                                    className="w-[75px] h-[75px] object-contain"
-                                  />
-                                  {productsQuantity(cardList, elem) > 1 ? (
-                                    <div className="absolute right-0.5 bottom-0.5 w-[18px] h-[18px] flex items-center justify-center bg-[#ff5314] rounded-[4px] text-white text-[12px]">
-                                      {productsQuantity(cardList, elem)}
-                                    </div>
-                                  ) : (
-                                    ""
-                                  )}
-                                </div>
-                                <div className="flex items-center justify-between !px-2 gap-4 relative">
-                                  <p className="text-[14px] text-[#181818] text-center text-nowrap overflow-hidden">
+                              <div className="w-full flex justify-between items-center lg:!px-5">
+                                <div className="w-full flex items-center justify-start lg:!px-2 gap-1">
+                                  <div className="w-[40px] lg:w-[75px] h-[40px] lg:h-[75px] relative">
+                                    <img
+                                      src={elem.images[0]}
+                                      alt=""
+                                      className="w-[40px] h-[40px] lg:w-[75px] lg:h-[75px] object-contain"
+                                    />
+                                    {productsQuantity(cardList, elem) > 1 ? (
+                                      <div className="absolute right-0.5 bottom-0.5 w-[14px] h-[14px] lg:w-[18px] lg:h-[18px] flex items-center justify-center bg-[#ff5314] rounded-[4px] text-white text-[10px] lg:text-[12px]">
+                                        {productsQuantity(cardList, elem)}
+                                      </div>
+                                    ) : (
+                                      ""
+                                    )}
+                                  </div>
+                                  <p className="text-[12px] lg:text-[14px] text-[#181818] text-center text-nowrap overflow-hidden">
                                     {elem.title}
                                   </p>
+                                </div>
+                                <div className=" relative">
                                   <p className="text-[14px] text-[#181818] text-center font-bold">
                                     {elem.price}$
                                   </p>
@@ -201,10 +231,11 @@ const Header = ({ children }) => {
                           ))}
                         </div>
                         <div className="w-full flex justify-between items-center !p-4">
-                          <p className="text-[#181818] text-[18px] font-bold !ml-4">
-                            Total Price: {totalPayment(cardList)}$
+                          <p className=" text-[14px] lg:text-[18px] font-bold !ml-4 text-[#ff5314]">
+                            Total Price:{" "}
+                            {Number(totalPayment(cardList).toFixed(2))}$
                           </p>
-                          <button className="!px-8 !py-2 rounded-[8px] bg-[#ff5314] text-[#181818] text-[16px] font-bold hover:text-white cursor-pointer">
+                          <button className="!px-4 lg:!px-8 !py-2 rounded-[8px] bg-[#ff5314] text-[#181818] text-[14px] lg:text-[16px] font-bold hover:text-white cursor-pointer">
                             Pay Now
                           </button>
                         </div>
@@ -212,7 +243,7 @@ const Header = ({ children }) => {
                     ) : (
                       <div
                         className={`w-full h-full ${
-                          isOpen ? "flex" : "hidden"
+                          cardIsOpen ? "flex" : "hidden"
                         }  justify-center items-center text-[28px] text-[#ff5314]`}
                       >
                         YOUR CARD IS EMPTY

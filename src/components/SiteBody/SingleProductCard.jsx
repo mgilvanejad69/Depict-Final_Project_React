@@ -15,22 +15,22 @@ const SingleProductCard = ({ elem }) => {
           handleProductDetail(elem.id);
         }}
       >
-        <div className="min-w-full h-full decoration-0 flex justify-center cursor-pointer">
+        <div className="min-w-full h-full decoration-0 flex justify-center cursor-pointer border  border-[#181818] rounded-[50px]">
           <img
             src={elem.images[0]}
             alt=""
             loading="lazy"
-            className="w-full h-full lg:min-w-[300px] object-contain bg-gray-600 rounded-[50px]"
+            className="w-full h-full lg:min-w-[300px] object-contain rounded-[50px]"
           />
-          <div className="!px-3 w-[80%] h-[40px] max-w-[80%] absolute bottom-[54px] flex justify-between items-center bg-[#FFFFFF] opacity-80 rounded-[50px]">
+          <div className="!px-3 w-[80%] h-[40px] max-w-[80%] absolute bottom-[54px] flex justify-between items-center bg-[#181818] opacity-80 rounded-[50px]">
             <div className="w-[70%] relative">
-              <p className="text-[14px] overflow-hidden text-nowrap">
+              <p className="text-[14px] overflow-hidden text-nowrap text-white">
                 {elem.title}
               </p>
-              <div className="w-[60px] h-full absolute top-0 right-0 bg-gradient-to-r from-transparent to-[#FFFFFF] "></div>
+              <div className="w-[60px] h-full absolute top-0 right-0 bg-gradient-to-r from-transparent to-[#181818] "></div>
             </div>
             <div className="flex justify-end items-center">
-              <p className="font-bold text-end">{elem.price}$</p>
+              <p className="font-bold text-end text-white">{elem.price}$</p>
             </div>
           </div>
         </div>
